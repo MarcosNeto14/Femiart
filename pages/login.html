@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../styles/output.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png">
+  <link rel="shortcut icon" type="image/png" href="../assets/logo.png">
   <title>Femiart - Login</title>
   <style>
     /* Adiciona padding aos campos de input */
@@ -41,41 +41,25 @@
     <form id="loginForm" class="space-y-4">
       <!-- Email Field -->
       <div class="py-4">
-        <label
-          for="email"
-          class="block text-sm font-medium rounded-full text-gray-700"
-          >Email</label
-        >
+        <label for="email" class="block text-sm font-medium rounded-full text-gray-700">Email</label>
         <input
           type="email"
           id="email"
           name="email"
           required
           class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          style="
-            -webkit-filter: drop-shadow(2px 2px 2px #979797);
-            filter: drop-shadow(2px 2px 2px #979797);
-            padding: 10px;
-          "
         />
       </div>
 
       <!-- Password Field -->
       <div class="max-w-lg p-8">
-        <label for="password" class="block text-sm font-medium text-gray-700"
-          >Password</label
-        >
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
         <input
           type="password"
           id="password"
           name="password"
           required
           class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          style="
-            -webkit-filter: drop-shadow(2px 2px 2px #979797);
-            filter: drop-shadow(2px 2px 2px #979797);
-            padding: 10px;
-          "
         />
       </div>
 
@@ -102,42 +86,27 @@
     <div class="text-center">
       <p class="text-sm text-gray-600">
         Não possui conta?
-        <a href="register.html" class="hover:underline" style="color: #d68c45"
-          >Cadastre-se!</a
-        >
+        <a href="register.html" class="hover:underline" style="color: #d68c45">Cadastre-se!</a>
       </p>
     </div>
   </main>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Impede o envio padrão do formulário
 
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      try {
-        const response = await fetch('/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          alert('Login bem-sucedido!');
-          // Salve o token no localStorage e redirecione
-          localStorage.setItem('token', data.token);
-          window.location.href = 'menu-produtos.html';
-        } else {
-          alert('Email ou senha incorretos. Tente novamente.');
-        }
-      } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        alert('Ocorreu um erro. Tente novamente mais tarde.');
+      // Verifique as credenciais
+      if (email === 'teste@teste.com' && password === 'teste123') {
+        alert('Login bem-sucedido!');
+        // Redirecione para a página de loja
+        window.location.href = 'menu-produtos.html';
+      } else {
+        alert('Email ou senha incorretos. Tente novamente.');
       }
     });
   </script>
 </body>
 </html>
-<script src="../js/app.js"></script>
