@@ -5,38 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../styles/output.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="../assets/logo.png">
   <title>Femiart - Login</title>
   <style>
-    /* Adiciona padding aos campos de input */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;;
+    }
+    .container {
+      padding: 20px;
+      padding-top: 40px;
+      background-color: white;
+      border-radius: 10px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }    
     input[type="email"], input[type="password"] {
-      padding: 10px; /* Ajuste este valor conforme necessário */
+      padding: 10px;  /* Adiciona padding aos campos de input */
+      width: 100%;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px; /* Ajuste este valor conforme necessário */
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+    }
+    label {
+      text-align: left;
+      display: block;
+    }
+    img {
+        width: 64px;
+        height: 64px;
+      }
+      .text-2xl {
+        font-size: 1.5rem;
+      }
+      .container {
+        max-width: 100%; /* Certifique-se de que a largura máxima seja 100% em dispositivos móveis */
+      }
+      .container header {
+        padding-bottom: 20px;
+      }
     }
   </style>
 </head>
-<body class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-  <header class="h-[200px] flex flex-col justify-center items-center">
-    <!-- LOGO -->
-    <img
-      src="../assets/logo.png"
-      alt="LogoFemiart"
-      class="w-32 h-32 mt-6 mb-6 animate__animated animate__slideInDown"
-      style="
-        -webkit-filter: drop-shadow(2px 2px 2px #979797);
-        filter: drop-shadow(2px 2px 2px #979797);
-      "
-    />
-    <div
-      class="text-2xl md:text-3xl text-black font-bold text-center mt-2 mb-2 animate__animated animate__slideInLeft"
-    >
-      Login
-    </div>
-  </header>
+<body>
+  <div>
+    <header class="flex flex-col justify-center items-center min-h-scream bg-gray-100">
+      <!-- LOGO -->
+      <img
+        src="../assets/logo.png"
+        alt="LogoFemiart"
+        class="w-32 h-32 mt-6 mb-6 animate__animated animate__slideInDown"
+        style="
+          -webkit-filter: drop-shadow(2px 2px 2px #979797);
+          filter: drop-shadow(2px 2px 2px #979797);
+        "
+      />
+      <div
+        class="text-2xl md:text-3xl text-black font-bold text-center mt-2 mb-2 animate__animated animate__slideInLeft"
+      >
+        Login
+      </div>
+    </header>
 
   <!-- Form Container -->
   <main
     class="max-w-md min-w-32 p-2 bg-white rounded-lg animate__animated animate__fadeIn animate__delay-1s"
-    style="width: 400px"
+    style="width: 400px;"
   >
     <form id="loginForm" class="space-y-4">
       <!-- Email Field -->
@@ -47,13 +93,14 @@
           id="email"
           name="email"
           required
+          placeholder="Endereço de e-mail"
           class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
         />
       </div>
 
       <!-- Password Field -->
       <div class="max-w-lg p-8">
-        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
         <input
           type="password"
           id="password"
@@ -67,7 +114,8 @@
         href="password-recovery.html"
         class="block px-3 py-2 text-sm font-light text-green-600 hover:underline mt-1"
         style="text-align: end; color: #d68c45"
-        >Esqueceu a senha?</a
+        >Esqueceu a senha?
+      </a
       >
 
       <!-- Submit Button -->
@@ -75,9 +123,13 @@
         <button
           type="submit"
           class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-          style="background-color: #129063"
+          style="
+          background-color: #129063;
+          border: 1px;
+          border-radius: 8px
+          "
         >
-          Login
+          Entrar
         </button>
       </div>
     </form>
@@ -87,6 +139,12 @@
       <p class="text-sm text-gray-600">
         Não possui conta?
         <a href="register.html" class="hover:underline" style="color: #d68c45">Cadastre-se!</a>
+      </p>
+    </div>
+    <!-- Continue without account Link -->
+    <div class="text-center">
+      <p class="text-sm text-gray-600 mt-2">
+        <a href="#" class="hover:underline" style="color: #d68c45">Continuar sem cadastro</a>
       </p>
     </div>
   </main>
