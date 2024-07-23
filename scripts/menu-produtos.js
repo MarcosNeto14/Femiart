@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="product-price">${produto.preco}</p>
           <p class="product-rating">Avaliação: ${produto.avaliacao}</p>
           <p class="product-seller">Vendedor: ${produto.vendedor}</p>
+          <button class="buy-button">COMPRAR</button>
         </div>
       `;
       productContainer.appendChild(produtoElemento);
@@ -75,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="product-price">${produto.preco}</p>
           <p class="product-rating">Avaliação: ${produto.avaliacao}</p>
           <p class="product-seller">Vendedor: ${produto.vendedor}</p>
+          <button class="buy-button">COMPRAR</button>
         </div>
       `;
       productContainer.appendChild(produtoElemento);

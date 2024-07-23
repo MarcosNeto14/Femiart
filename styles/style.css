@@ -411,3 +411,19 @@ body {
 .product-info {
   margin-top: 10px;
 }
+
+.buy-button {
+  background-color: #129063; 
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #0e7a50; /* Cor verde mais escura ao passar o mouse */
+}
