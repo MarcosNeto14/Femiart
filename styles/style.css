@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 html,
-
 * {
   box-sizing: border-box;
 }
@@ -15,16 +14,15 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  padding:0 ;
+  padding: 0;
   font-family: 'Roboto', sans-serif;
-  
 }
 
 .menu-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #129063; 
+  background-color: #129063;
   border: solid red 1px;
   padding-top: 1%;
   justify-content: space-between;
@@ -35,7 +33,6 @@ body {
   display: inline-block;
   width: 5%;
   height: 5%;
-  /*border: solid pink 0.5px; */
   margin: 1% 0.5% 1% 4%;
 }
 
@@ -47,39 +44,37 @@ body {
 #search-bar {
   display: flex;
   width: 50%;
-  height: 40px; /* Define a altura para todo o search-bar */
+  height: 40px;
   margin: 0;
 }
 
 #in-pesquisa {
   width: 90%;
-  height: 100%; /* Alinha a altura com o container pai */
+  height: 100%;
   margin: 0;
   border-radius: 7px 0 0 7px;
   border: none;
-  padding-left: 10px; /* Adiciona padding interno para melhor visual */
-  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 #search-bar button {
   background-image: url("../assets/icons/search_24px.png");
   background-repeat: no-repeat;
-  background-size: 50%; /* Ajusta o tamanho do ícone */
+  background-size: 50%;
   background-position: center;
-  width: 10%; /* Aumenta a largura para melhor alinhamento */
-  height: 100%; /* Alinha a altura com o container pai */
+  width: 10%;
+  height: 100%;
   margin: 0;
   border: none;
   border-radius: 0 7px 7px 0;
-  cursor: pointer; /* Adiciona um cursor de pointer para melhor UX */
+  cursor: pointer;
 }
-
 
 #info-user {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /*border: solid blue 0.3px; */
   margin-right: 1%;
   margin-left: 1%;
   width: 10%;
@@ -103,7 +98,7 @@ body {
 #info-user p {
   display: flex;
   width: 75%;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   font-size: 10pt;
   color: #ffffff;
@@ -135,7 +130,7 @@ body {
   text-align: center;
   width: 100%;
   padding: 4% 0 4% 0;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   font-size: 10pt;
   color: #ffffff;
@@ -146,11 +141,10 @@ body {
   margin-left: 20px;
   height: 30px;
   cursor: pointer;
-  
 }
 
 #menu-icons img:hover {
-  border: 1px solid white; /* Adiciona uma borda branca ao passar o mouse */
+  border: 1px solid white;
 }
 
 #list-categorias {
@@ -161,6 +155,10 @@ body {
   margin-top: 20px;
 }
 
+#list-categorias li:first-child {
+  padding-top: 20px;
+}
+ 
 #list-categorias li {
   list-style: none;
   text-align: center;
@@ -177,26 +175,13 @@ body {
   margin-top: 5px;
   font-weight: bold;
   color: #333;
-  font-family: 'Roboto', sans-serif;;
+  font-family: 'Roboto', sans-serif;
 }
 
 #list-categorias li.active {
   border-bottom: 2px solid #ff6600;
   font-weight: bold;
   color: #ff6600;
-}
-
-
-#list-categorias img {
-  height: 50px;
-}
-
-#list-categorias span {
-  display: block;
-  margin-top: 5px;
-  font-weight: bold;
-  color: #333;
-  font-family: 'Roboto', sans-serif;;
 }
 
 .product-container {
@@ -218,8 +203,9 @@ body {
 }
 
 .product-image {
-  width: 100%;
-  height: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
 
@@ -243,53 +229,7 @@ body {
   color: #555;
 }
 
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-}
-
-.product-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  overflow: hidden;
-  width: 200px;
-  text-align: center;
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-}
-
-.product-info {
-  padding: 15px;
-}
-
-.product-name {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.product-price {
-  color: #129063;
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.product-rating,
-.product-seller {
-  color: #555;
-  font-size: 14px;
-}
-
-
 /* PARA TELA DE PAGAMENTO */
-
 
 .payment-container {
   max-width: 1200px;
@@ -372,65 +312,102 @@ body {
 /* Responsividade */
 @media (max-width: 768px) {
   .payment-container {
-      padding: 10px;
+    padding: 10px;
   }
 
   .payment-option {
-      padding: 15px;
+    padding: 15px;
   }
 
   .payment-option-label {
-      font-size: 16px;
+    font-size: 16px;
   }
 
   .payment-info {
-      font-size: 12px;
-      margin: 5px 0 0 20px;
+    font-size: 12px;
+    margin: 5px 0 0 20px;
   }
 
   .payment-btn {
-      padding: 10px 15px;
-      font-size: 14px;
-      max-width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .payment-container {
-      margin: 20px auto;
-      padding: 10px;
+    margin: 20px auto;
+    padding: 10px;
   }
 
   .payment-container h1 {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .payment-option {
-      padding: 10px;
+    padding: 10px;
   }
 
   .payment-option-label {
-      font-size: 14px;
+    font-size: 14px;
   }
 
   .payment-info {
-      font-size: 12px;
-      margin: 5px 0 0 15px;
+    font-size: 12px;
+    margin: 5px 0 0 15px;
   }
 
   .payment-btn {
-      padding: 8px 10px;
-      font-size: 12px;
-      max-width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
+    max-width: 100%;
   }
 
   .payment-actions {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .payment-btn.add-card, .payment-btn.continue {
-      flex: none;
-      width: 100%;
-      margin: 5px 0;
+    flex: none;
+    width: 100%;
+    margin: 5px 0;
   }
+}
+
+/* --------------------- */
+/* Estilos para os novos produtos */
+#list-categorias ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#list-categorias li {
+  display: inline;
+  margin-right: 10px;
+}
+
+#product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.product-info {
+  margin-top: 10px;
 }
