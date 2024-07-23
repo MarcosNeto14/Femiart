@@ -71,14 +71,31 @@ body {
   cursor: pointer;
 }
 
+#info-user p {
+  display: flex; /* Usar flexbox para alinhar os itens */
+  align-items: center; /* Alinhar verticalmente */
+  gap: 10px; /* Espaço entre o texto e o link */
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  font-size: 10pt;
+  color: #ffffff;
+}
+
+#info-user p a {
+  color: #ffffff; /* Cor do link para combinar com o texto */
+  text-decoration: none; /* Remover o sublinhado do link */
+  margin-left: 10px; /* Adicionar espaço à esquerda do link */
+}
+
 #info-user {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: center; /* Alinhar verticalmente */
   margin-right: 1%;
   margin-left: 1%;
   width: 10%;
 }
+
 
 #icon-perfil {
   display: flex;
@@ -426,4 +443,15 @@ body {
 
 .buy-button:hover {
   background-color: #0e7a50; /* Cor verde mais escura ao passar o mouse */
+}
+
+.product-rating {
+  font-size: 12px;
+  color: #f5c518; /* Cor dourada para estrelas */
+}
+
+.product-rating .fa-star,
+.product-rating .fa-star-half-alt {
+  color: #f5c518;
+  margin-right: 3px;
 }

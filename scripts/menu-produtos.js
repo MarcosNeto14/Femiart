@@ -36,12 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function exibirProdutos(categoria) {
     productContainer.innerHTML = "";
-
+  
     const produtos = categoria === "Todos os Produtos"
       ? todosProdutos
       : obterProdutosPorCategoria(categoria);
-
+  
     produtos.forEach(produto => {
+      const estrelaHtml = gerarEstrelas(produto.avaliacao);
+  
       const produtoElemento = document.createElement("div");
       produtoElemento.className = "product-card";
       produtoElemento.innerHTML = `
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="product-info">
           <h3 class="product-name">${produto.nome}</h3>
           <p class="product-price">${produto.preco}</p>
-          <p class="product-rating">Avaliação: ${produto.avaliacao}</p>
+          <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
           <p class="product-seller">Vendedor: ${produto.vendedor}</p>
           <button class="buy-button">COMPRAR</button>
         </div>
@@ -90,3 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
   categorias[0].classList.add("active");
   exibirProdutos(categorias[0].getAttribute("data-categoria"));
 });
+
+function gerarEstrelas(avaliacao) {
+  const estrelas = Math.floor(avaliacao);
+  const meiaEstrela = avaliacao % 1 >= 0.5;
+  let estrelasHtml = '';
+
+  for (let i = 0; i < estrelas; i++) {
+    estrelasHtml += '<i class="fas fa-star"></i>';
+  }
+
+  if (meiaEstrela) {
+    estrelasHtml += '<i class="fas fa-star-half-alt"></i>';
+  }
+
+  return estrelasHtml;
+}
