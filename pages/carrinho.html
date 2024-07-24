@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
-    <title>Produtos</title>
+    <title>Carrinho</title>
   </head>
   <body>
     <div class="menu-bar">
@@ -54,35 +54,22 @@
           id="icon-carrinho"
           src="../assets/icons/carrinho.png"
           alt="Carrinho"
-          onclick="location.href='carrinho.html';"
         />
       </div>
     </div>
-    <ul id="list-categorias">
-      <li data-categoria="Todos os Produtos" class="active">
-        <span>Todos os Produtos</span>
-      </li>
-      <li data-categoria="Banho">
-        <img src="../assets/banho.png" alt="Banho" />
-        <span>Banho</span>
-      </li>
-      <li data-categoria="Cozinha">
-        <img src="../assets/cozinha.png" alt="Cozinha" />
-        <span>Cozinha</span>
-      </li>
-      <li data-categoria="Jardim e Decoração">
-        <img src="../assets/jardim.png" alt="Jardim e Decoração" />
-        <span>Jardim e Decoração</span>
-      </li>
-      <li data-categoria="Quarto">
-        <img src="../assets/quarto.png" alt="Quarto" />
-        <span>Quarto</span>
-      </li>
-    </ul>
-    <div id="product-container" class="product-container">
-      <!-- Produtos serão exibidos aqui -->
+
+    <div id="cart-container" class="cart-container">
+      <h1>Meu Carrinho</h1>
+      <div id="cart-items">
+        <!-- Itens do carrinho serão exibidos aqui -->
+      </div>
+
+      <div class="cart-summary">
+        <h3>Resumo do Pedido</h3>
+        <p>Total: R$ <span id="cart-total">0.00</span></p>
+        <button id="checkout-btn">Finalizar Compra</button>
+      </div>
     </div>
-    <script src="../scripts/produtos.js"></script>
-    <script src="../scripts/menu-produtos.js"></script>
+    <script src="../scripts/carrinho.js"></script>
   </body>
 </html>
