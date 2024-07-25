@@ -245,6 +245,36 @@ body {
   color: #555;
 }
 
+.items-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adicionado para espaçamento */
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  width: calc(50% - 20px); /* Ajuste para garantir que os itens fiquem lado a lado */
+  box-sizing: border-box; /* Garante que o padding e border não afetem o tamanho */
+}
+
+.item-info {
+  display: flex;
+  width: 100%;
+}
+
+.item-image {
+  width: 150px; /* Aumentado para melhor visibilidade */
+  height: auto;
+  margin-right: 20px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+
 /* PARA TELA DE PAGAMENTO */
 
 .payment-container {
