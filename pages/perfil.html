@@ -45,9 +45,9 @@
             display: flex;
             align-items: center;
             padding: 10px 20px;
-            background-color: #129063; /* Cor de fundo */
-            color: #fff; /* Cor do texto */
-            border-radius: 5px; /* Cantos arredondados */
+            background-color: #129063;
+            color: #fff;
+            border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
@@ -57,7 +57,7 @@
         }
 
         .profile-button:hover {
-            background-color: #0e7a4f; /* Cor ao passar o mouse */
+            background-color: #0e7a4f;
         }
     </style>
 </head>
@@ -102,15 +102,19 @@
                 <h1 class="vendor-name">Cleide da Silva</h1>
                 <h2>
                     <img src="../assets/icons/phone.png" alt="Telefone" class="info-icon" />
-                    Telefone: (81) 98765-4321
+                    Telefone: <span id="phone-number"></span>
                 </h2>
                 <h2>
                     <img src="../assets/cadastro.png" alt="No Femiart desde:" class="info-icon" />
-                    No Femiart Desde: Junho de 2024
+                    No Femiart Desde: <span id="member-since">Junho de 2024</span>
+                </h2>
+                <h2>
+                    <img src="../assets/icons/person_outline_24px.png" alt="E-mail" class="info-icon" />
+                    E-mail: <span id="email"></span>
                 </h2>
                 <p>
                     <img src="../assets/venda.png" alt="Número de Compras" class="info-icon" />
-                    Número de Compras: 2
+                    Número de Compras: <span id="purchase-count">2</span>
                 </p>
                 <p>
                     Avaliação Média: 
@@ -131,7 +135,7 @@
                 <img src="../assets/icons/carrinho.png" alt="Minhas Compras" />
                 Minhas Compras
             </a>
-            <a href="#" class="profile-button">
+            <a href="alterar-dados.html" class="profile-button">
                 <img src="../assets/icons/person_outline_24px.png" alt="Alterar Dados" />
                 Alterar Dados
             </a>
@@ -141,5 +145,15 @@
             </a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var phoneNumber = localStorage.getItem('phoneNumber') || '(81) 98765-4321';
+            var email = localStorage.getItem('email') || 'teste@gmail.com';
+
+            document.getElementById('phone-number').textContent = phoneNumber;
+            document.getElementById('email').textContent = email;
+        });
+    </script>
 </body>
 </html>
