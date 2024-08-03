@@ -143,6 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       productContainer.appendChild(produtoElemento);
     });
+
+    // Adiciona event listeners para os botões "COMPRAR"
+    const buyButtons = document.querySelectorAll(".buy-button");
+    buyButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.location.href = "carrinho.html";
+      });
+    });
   }
 
   function exibirProdutosPorPesquisa(query) {
@@ -155,6 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     produtos.forEach((produto) => {
+      const estrelaHtml = gerarEstrelas(produto.avaliacao);
+
       const produtoElemento = document.createElement("div");
       produtoElemento.className = "product-card";
       produtoElemento.innerHTML = `
@@ -162,12 +172,20 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="product-info">
           <h3 class="product-name">${produto.nome}</h3>
           <p class="product-price">${produto.preco}</p>
-          <p class="product-rating">Avaliação: ${produto.avaliacao}</p>
+          <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
           <p class="product-seller">Vendedor: ${produto.vendedor}</p>
           <button class="buy-button">COMPRAR</button>
         </div>
       `;
       productContainer.appendChild(produtoElemento);
+    });
+
+    // Adiciona event listeners para os botões "COMPRAR"
+    const buyButtons = document.querySelectorAll(".buy-button");
+    buyButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.location.href = "carrinho.html";
+      });
     });
   }
 
