@@ -1,133 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/style.css" />
     <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
+    <title>Detalhes do Produto</title>
     <style>
         body {
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
             margin: 0;
-            font-family: 'Roboto', sans-serif;
         }
-        .product-details {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        .product-details header, .product-details footer {
+
+        .container {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            justify-content: center;
+            align-items: flex-start; /* Ajusta o alinhamento vertical para o topo */
+            min-height: calc(100vh - 70px); /* Ajusta a altura para ocupar o restante da tela, descontando o cabeçalho */
+            padding-top: 20px; /* Espaçamento superior */
         }
+
+        .product-details {
+            display: flex;
+            flex-direction: column; /* Arranja elementos em coluna */
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            margin-top: 20px; /* Ajusta a altura para subir o container */
+        }
+
+        .back-button {
+            background: url('../assets/voltar2.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .product-info-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .product-image {
+            flex-shrink: 0; /* Prevent image from shrinking */
+            width: 300px; /* Fixed width to prevent overflow */
+            height: auto;
+            margin-left: 40px; /* Aumenta margem para mover a imagem mais para a direita */
+        }
+
         .product-image img {
-            max-width: 100%;
+            width: 100%;
+            height: auto;
             border-radius: 10px;
         }
+
         .product-info {
-            margin-top: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .product-info h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+
         .product-info p {
-            margin-bottom: 5px;
+            margin: 5px 0;
         }
-        .product-info .price {
-            font-size: 1.2rem;
-            color: #129063;
-            font-weight: bold;
-        }
+
         .add-to-cart {
             background-color: #129063;
             color: white;
-            padding: 10px;
             border: none;
-            border-radius: 5px;
+            padding: 8px; /* Reduz o comprimento do botão */
+            width: 200px; /* Define uma largura fixa para o botão */
             cursor: pointer;
-            width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center; /* Centraliza o texto dentro do botão */
+            font-size: 0.875rem; /* Ajusta o tamanho da fonte */
+            display: inline-block;
         }
+
         .add-to-cart:hover {
-            background-color: #0f7a52;
+            background-color: #0e7a4f;
         }
+
+        .rating {
+            font-size: 1.5rem;
+            color: #ffcc00;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            background-color: white;
+            width: 100%;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
         .footer-button {
-            background-color: #129063;
-            color: white;
+            background: none;
             border: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px;
+            font-size: 1.5rem;
             cursor: pointer;
-            flex-grow: 1;
-        }
-        .footer-button:hover {
-            background-color: #0f7a52;
         }
     </style>
 </head>
 <body>
     <div class="menu-bar">
-      <div id="logo">
-        <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
-      </div>
-      <form id="search-bar" action="#" method="post">
-        <input type="text" name="in-pesquisa" id="in-pesquisa" placeholder="Pesquisar produtos..." />
-        <button type="submit"></button>
-      </form>      
-      <div id="info-user">
-        <div id="icon-perfil">
-          <img src="../assets/icons/person_outline_24px.png" alt="Perfil" />
+        <div id="logo">
+          <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
         </div>
-        <p>
-          Olá, Fulano <br />
-          <a href="#">Minha Conta</a>
-        </p>
+        <form id="search-bar" action="#" method="post">
+          <input
+            type="text"
+            name="in-pesquisa"
+            id="in-pesquisa"
+            placeholder="Pesquisar produtos..."
+          />
+          <button type="submit"></button>
+        </form>
+        <div id="info-user">
+          <div id="icon-perfil">
+            <img src="../assets/icons/person_outline_24px.png" alt="Perfil" />
+          </div>
+          <p>
+            Olá, Fulano <br />
+            <a href="#">Minha Conta</a>
+          </p>
+        </div>
+        <div id="sub-menu">
+          <ul id="menu-list">
+            <li><a href="#">Ver Minha conta</a></li>
+            <li><a href="#">Minhas Compras</a></li>
+            <li><a href="#">Meu Carrinho</a></li>
+            <li><a href="#">Sair da Conta</a></li>
+          </ul>
+        </div>
+        <div id="menu-icons">
+          <img id="icon-doacao" src="../assets/icons/coin.png" alt="Doação" />
+          <img id="list-fav" src="../assets/icons/Heart.png" alt="Favoritos" />
+          <img
+            id="icon-carrinho"
+            src="../assets/icons/carrinho.png"
+            alt="Carrinho"
+            onclick="location.href='carrinho.html';"
+          />
+        </div>
       </div>
-      <div id="sub-menu">
-        <ul id="menu-list">
-          <li><a href="#">Ver Minha conta</a></li>
-          <li><a href="#">Minhas Compras</a></li>
-          <li><a href="#">Meu Carrinho</a></li>
-          <li><a href="#">Sair da Conta</a></li>
-        </ul>
-      </div>
-      <div id="menu-icons">
-        <img id="icon-doacao" src="../assets/icons/coin.png" alt="Doação" />
-        <img id="list-fav" src="../assets/icons/Heart.png" alt="Favoritos" />
-        <img id="icon-carrinho" src="../assets/icons/carrinho.png" alt="Carrinho" />
-      </div>
-    </div>
 
-    <div class="product-details">
-        <header>
-            <button class="back-button" onclick="window.location.href='menu-produtos.html'">⬅️</button>
-            <button class="share-button">🔗</button>
-        </header>
-        <div class="product-image">
-            <img src="../assets/toalha_rendada.png" alt="Toalha Rendada">
+    <div class="container">
+        <div class="product-details">
+            <button class="back-button" onclick="window.location.href='menu-produtos.html'"></button>
+            <div class="product-info-container">
+                <div class="product-image">
+                    <img src="../assets/toalha_rendada.png" alt="Toalha Rendada">
+                </div>
+                <div class="product-info">
+                    <p class="seller">Vendido por: <a href="vendedora-page.html"><span>Maria do Carmo</span></a></p>
+                    <h1>Toalha Rendada</h1>
+                    <p class="rating">⭐ 4/5</p>
+                    <p class="price">R$ 18,00</p>
+                    <button class="add-to-cart">Adicionar à sacola</button>
+                </div>
+            </div>
+            <footer class="footer">
+                <button class="footer-button">🏠</button>
+                <button class="footer-button">💚</button>
+                <button class="footer-button">🛒</button>
+                <button class="footer-button">💌</button>
+            </footer>
         </div>
-        <div class="product-info">
-            <p class="seller">Vendido por: <a href="vendedora-page.html"><span>Maria do Carmo</span></a></p>
-            <h1>Toalha Rendada</h1>
-            <p class="rating">⭐ 4/5</p>
-            <p class="price">R$ 18,00</p>
-            <button class="add-to-cart">Adicionar à sacola</button>
-        </div>
-        <footer>
-            <button class="footer-button">🏠</button>
-            <button class="footer-button">💚</button>
-            <button class="footer-button">🛒</button>
-            <button class="footer-button">💌</button>
-        </footer>
     </div>
 </body>
 </html>

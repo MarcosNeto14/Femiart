@@ -57,43 +57,52 @@
 <body>
     <div class="menu-bar">
         <div id="logo">
-            <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
+          <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
         </div>
         <form id="search-bar" action="#" method="post">
-            <input type="text" name="in-pesquisa" id="in-pesquisa" placeholder="Pesquisar produtos..." />
-            <button type="submit"></button>
+          <input
+            type="text"
+            name="in-pesquisa"
+            id="in-pesquisa"
+            placeholder="Pesquisar produtos..."
+          />
+          <button type="submit"></button>
         </form>
         <div id="info-user">
-            <div id="icon-perfil">
-                <img src="../assets/icons/person_outline_24px.png" alt="Perfil" />
-            </div>
-            <p>
-                Olá, Fulano <br />
-                <a href="#">Minha Conta</a>
-            </p>
-            <img id="btn-submenu" src="../assets/icons/navigate_down.png" alt="Submenu" />
+          <div id="icon-perfil">
+            <img src="../assets/icons/person_outline_24px.png" alt="Perfil" />
+          </div>
+          <p>
+            Olá, Fulano <br />
+            <a href="#">Minha Conta</a>
+          </p>
         </div>
         <div id="sub-menu">
-            <ul id="menu-list">
-                <li><a href="#">Ver Minha conta</a></li>
-                <li><a href="#">Minhas Compras</a></li>
-                <li><a href="#">Meu Carrinho</a></li>
-                <li><a href="#">Sair da Conta</a></li>
-            </ul>
+          <ul id="menu-list">
+            <li><a href="#">Ver Minha conta</a></li>
+            <li><a href="#">Minhas Compras</a></li>
+            <li><a href="#">Meu Carrinho</a></li>
+            <li><a href="#">Sair da Conta</a></li>
+          </ul>
         </div>
         <div id="menu-icons">
-            <img id="icon-doacao" src="../assets/icons/coin.png" alt="Doação" />
-            <img id="list-fav" src="../assets/icons/Heart.png" alt="Favoritos" />
-            <img id="icon-carrinho" src="../assets/icons/carrinho.png" alt="Carrinho" />
+          <img id="icon-doacao" src="../assets/icons/coin.png" alt="Doação" />
+          <img id="list-fav" src="../assets/icons/Heart.png" alt="Favoritos" />
+          <img
+            id="icon-carrinho"
+            src="../assets/icons/carrinho.png"
+            alt="Carrinho"
+            onclick="location.href='carrinho.html';"
+          />
         </div>
-    </div>
+      </div>
 
     <div class="form-container">
         <h2>Alterar Dados</h2>
         <form id="update-form">
             <div class="form-group">
                 <label for="phone-number">Telefone:</label>
-                <input type="text" id="phone-number" name="phone-number" required />
+                <input type="text" id="phone-number" name="phone-number" placeholder="(DDD) 9XXXX-XXXX" required />
             </div>
             <div class="form-group">
                 <label for="email">E-mail:</label>
@@ -106,6 +115,44 @@
     </div>
 
     <script>
+        function formatPhoneNumber(value) {
+            value = value.replace(/\D/g, ''); // Remove tudo o que não é dígito
+
+            if (value.length > 11) {
+                value = value.slice(0, 11); // Limita a 11 dígitos
+            }
+
+            // Adiciona parênteses e espaço após o DDD
+            const ddd = value.slice(0, 2);
+            const prefix = value.slice(2, 7);
+            const suffix = value.slice(7);
+
+            let formatted = '';
+            if (ddd) {
+                formatted += `(${ddd}) `;
+            }
+            if (prefix) {
+                formatted += prefix;
+            }
+            if (suffix) {
+                formatted += `-${suffix}`;
+            }
+
+            return formatted;
+        }
+
+        const phoneNumberInput = document.getElementById('phone-number');
+
+        phoneNumberInput.addEventListener('input', function(event) {
+            const cursorPosition = phoneNumberInput.selectionStart;
+            const originalValue = phoneNumberInput.value;
+            phoneNumberInput.value = formatPhoneNumber(originalValue);
+            
+            // Ajusta a posição do cursor após formatação
+            const newCursorPosition = phoneNumberInput.value.length - (originalValue.length - cursorPosition);
+            phoneNumberInput.setSelectionRange(newCursorPosition, newCursorPosition);
+        });
+
         document.getElementById('update-form').addEventListener('submit', function(event) {
             event.preventDefault();
             var phoneNumber = document.getElementById('phone-number').value;
