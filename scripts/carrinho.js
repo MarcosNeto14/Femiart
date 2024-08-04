@@ -79,7 +79,7 @@ function removeItem(id) {
 }
 
 document.getElementById("checkout-btn").addEventListener("click", () => {
-  alert("Compra finalizada!");
+  window.location.href = "pagamento.html";
 });
 
 updateCart();
