@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="menu-bar">
-        <div id="logo">
+        <div id="logo" onclick="location.href='menu-produtos.html';">
             <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
         </div>
         <form id="search-bar" action="#" method="post">
@@ -23,14 +23,14 @@
             </div>
             <p>
                 Olá, Fulano <br />
-                <a href="#">Minha Conta</a>
+                <a href="perfil.html">Minha Conta</a>
             </p>
         </div>
         <div id="sub-menu">
             <ul id="menu-list">
-                <li><a href="#">Ver Minha conta</a></li>
+                <li><a href="perfil.html">Ver Minha conta</a></li>
                 <li><a href="#">Minhas Compras</a></li>
-                <li><a href="#">Meu Carrinho</a></li>
+                <li><a href="carrinho.html">Meu Carrinho</a></li>
                 <li><a href="#">Sair da Conta</a></li>
             </ul>
         </div>
@@ -41,8 +41,8 @@
                 id="icon-carrinho"
                 src="../assets/icons/carrinho.png"
                 alt="Carrinho"
-          onclick="location.href='carrinho.html';"
-        />  
+                onclick="location.href='carrinho.html';"
+            />  
         </div>
     </div>
 
@@ -69,7 +69,7 @@
 
         <div class="payment-actions">
             <button class="payment-btn add-card">Adicionar um cartão de crédito</button>
-            <button class="payment-btn continue">Continuar</button>
+            <button class="payment-btn continue" onclick="location.href='checkout.html';">Continuar</button>
         </div>
     </div>
 
