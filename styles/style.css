@@ -243,7 +243,6 @@ body {
   color: black;
 }
 
-
 .product-price {
   color: #129063;
   font-weight: bold;
@@ -265,7 +264,9 @@ body {
 .cart-item {
   display: flex;
   align-items: flex-start;
-  width: calc(50% - 20px); /* Ajuste para garantir que os itens fiquem lado a lado */
+  width: calc(
+    50% - 20px
+  ); /* Ajuste para garantir que os itens fiquem lado a lado */
   box-sizing: border-box; /* Garante que o padding e border não afetem o tamanho */
 }
 
@@ -283,7 +284,6 @@ body {
 .item-details {
   flex: 1;
 }
-
 
 /* PARA TELA DE PAGAMENTO ***************************************************************************************************************************8*/
 
@@ -379,71 +379,69 @@ body {
 /* Responsividade */
 @media (max-width: 768px) {
   .payment-container {
-      padding: 10px;
+    padding: 10px;
   }
 
   .payment-option {
-      padding: 15px;
+    padding: 15px;
   }
 
   .payment-option-label {
-      font-size: 16px;
+    font-size: 16px;
   }
 
   .payment-info {
-      font-size: 12px;
-      margin: 5px 0 0 20px;
+    font-size: 12px;
+    margin: 5px 0 0 20px;
   }
 
   .payment-btn {
-      padding: 10px 15px;
-      font-size: 14px;
-      max-width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .payment-container {
-      margin: 20px auto;
-      padding: 10px;
+    margin: 20px auto;
+    padding: 10px;
   }
 
   .payment-container h1 {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .payment-option {
-      padding: 10px;
+    padding: 10px;
   }
 
   .payment-option-label {
-      font-size: 14px;
+    font-size: 14px;
   }
 
   .payment-info {
-      font-size: 12px;
-      margin: 5px 0 0 15px;
+    font-size: 12px;
+    margin: 5px 0 0 15px;
   }
 
   .payment-btn {
-      padding: 8px 10px;
-      font-size: 12px;
-      max-width: 100%;
+    padding: 8px 10px;
+    font-size: 12px;
+    max-width: 100%;
   }
 
   .payment-actions {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .payment-btn.add-card,
   .payment-btn.continue {
-      flex: none;
-      width: 100%;
-      margin: 5px 0;
+    flex: none;
+    width: 100%;
+    margin: 5px 0;
   }
 }
-
-
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Estilos para os novos produtos */
@@ -678,8 +676,6 @@ main {
   color: #333;
 }
 
-
-
 footer {
   background-color: #333;
   color: #fff;
@@ -733,4 +729,19 @@ footer {
 
 .vendor-name {
   color: #0e7a50;
+}
+
+/*------------------------- animação para transição das telas de confirmação de pagamento */
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
