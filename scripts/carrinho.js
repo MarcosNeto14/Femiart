@@ -1,35 +1,19 @@
-// Simulação de dados do carrinho
-let cartItems = [
-  {
-    id: 1,
-    name: "Panela de Barro",
-    price: 120.0,
-    quantity: 2,
-    image: "../assets/produtos/panela.jpg",
-  },
-  {
-    id: 2,
-    name: "Conjunto de Talheres",
-    price: 80.0,
-    quantity: 1,
-    image: "../assets/produtos/talheres.jpg",
-  },
-];
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
 function updateCart() {
-  const cartContainer = document.getElementById("cart-items");
-  cartContainer.innerHTML = "";
+    const cartContainer = document.getElementById("cart-items");
+    cartContainer.innerHTML = "";
 
-  let total = 0;
+    let total = 0;
 
-  cartItems.forEach((item) => {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
+    cartItems.forEach((item) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
 
-    const cartItem = document.createElement("div");
-    cartItem.classList.add("cart-item");
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
 
-    cartItem.innerHTML = `
+        cartItem.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <h4>${item.name}</h4>
@@ -48,35 +32,39 @@ function updateCart() {
             <button class="remove-btn" onclick="removeItem(${
               item.id
             })">Remover</button>
-        </div>
         `;
 
-    cartContainer.appendChild(cartItem);
-  });
+        cartContainer.appendChild(cartItem);
+    });
 
-  document.getElementById("cart-total").innerText = total.toFixed(2);
+    document.getElementById("cart-total").innerText = total.toFixed(2);
 }
+
 
 function decreaseQuantity(id) {
   const item = cartItems.find((item) => item.id === id);
   if (item.quantity > 1) {
-    item.quantity--;
+      item.quantity--;
   } else {
-    removeItem(id);
+      removeItem(id);
   }
+  localStorage.setItem('cart', JSON.stringify(cartItems));
   updateCart();
 }
 
 function increaseQuantity(id) {
   const item = cartItems.find((item) => item.id === id);
   item.quantity++;
+  localStorage.setItem('cart', JSON.stringify(cartItems));
   updateCart();
 }
 
 function removeItem(id) {
   cartItems = cartItems.filter((item) => item.id !== id);
+  localStorage.setItem('cart', JSON.stringify(cartItems));
   updateCart();
 }
+
 
 document.getElementById("checkout-btn").addEventListener("click", () => {
   window.location.href = "pagamento.html";

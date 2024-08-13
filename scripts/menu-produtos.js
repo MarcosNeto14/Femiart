@@ -5,19 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("in-pesquisa");
 
   const todosProdutos = [
-    { nome: "Sabonete Artesanal", preco: "R$ 10,00", avaliacao: 4.5, foto: "../assets/produtos/sabonete.jpg", vendedor: "Maria", categoria: "Banho" },
-    { nome: "Panela de Barro", preco: "R$ 120,00", avaliacao: 4.8, foto: "../assets/produtos/panela.jpg", vendedor: "José", categoria: "Cozinha" },
-    { nome: "Toalha de Banho Bordada", preco: "R$ 45,00", avaliacao: 4.7, foto: "../assets/produtos/toalha.jpg", vendedor: "Ana", categoria: "Banho" },
-    { nome: "Conjunto de Talheres", preco: "R$ 80,00", avaliacao: 4.6, foto: "../assets/produtos/talheres.jpg", vendedor: "Carlos", categoria: "Cozinha" },
-    { nome: "Vaso de Cerâmica", preco: "R$ 60,00", avaliacao: 4.5, foto: "../assets/produtos/vaso.jpg", vendedor: "Fernanda", categoria: "Jardim e Decoração" },
-    { nome: "Quadro Decorativo", preco: "R$ 150,00", avaliacao: 4.9, foto: "../assets/produtos/quadro.jpg", vendedor: "Lucas", categoria: "Jardim e Decoração" },
-    { nome: "Almofada Artesanal", preco: "R$ 35,00", avaliacao: 4.3, foto: "../assets/produtos/almofada.jpg", vendedor: "Mariana", categoria: "Quarto" },
-    { nome: "Cobertor de Lã", preco: "R$ 90,00", avaliacao: 4.4, foto: "../assets/produtos/cobertor.jpg", vendedor: "Roberto", categoria: "Quarto" },
-    { nome: "Porta Sabonete", preco: "R$ 20,00", avaliacao: 4.2, foto: "../assets/produtos/porta_sabonete.jpg", vendedor: "Elisa", categoria: "Banho" },
-    { nome: "Fruteira de Madeira", preco: "R$ 100,00", avaliacao: 4.6, foto: "../assets/produtos/fruteira.jpg", vendedor: "Ricardo", categoria: "Cozinha" },
-    { nome: "Jardineira Suspensa", preco: "R$ 120,00", avaliacao: 4.8, foto: "../assets/produtos/jardineira.jpg", vendedor: "Bianca", categoria: "Jardim e Decoração" },
-    { nome: "Espelho Decorativo", preco: "R$ 75,00", avaliacao: 4.7, foto: "../assets/produtos/espelho.jpg", vendedor: "Juliana", categoria: "Jardim e Decoração" },
+    { id: 1, nome: "Sabonete Artesanal", preco: "R$ 10,00", avaliacao: 4.5, foto: "../assets/produtos/sabonete.jpg", vendedor: "Maria", categoria: "Banho" },
+    { id: 2, nome: "Panela de Barro", preco: "R$ 120,00", avaliacao: 4.8, foto: "../assets/produtos/panela.jpg", vendedor: "José", categoria: "Cozinha" },
+    { id: 3, nome: "Toalha de Banho Bordada", preco: "R$ 45,00", avaliacao: 4.7, foto: "../assets/produtos/toalha.jpg", vendedor: "Ana", categoria: "Banho" },
+    { id: 4, nome: "Conjunto de Talheres", preco: "R$ 80,00", avaliacao: 4.6, foto: "../assets/produtos/talheres.jpg", vendedor: "Carlos", categoria: "Cozinha" },
+    { id: 5, nome: "Vaso de Cerâmica", preco: "R$ 60,00", avaliacao: 4.5, foto: "../assets/produtos/vaso.jpg", vendedor: "Fernanda", categoria: "Jardim e Decoração" },
+    { id: 6, nome: "Quadro Decorativo", preco: "R$ 150,00", avaliacao: 4.9, foto: "../assets/produtos/quadro.jpg", vendedor: "Lucas", categoria: "Jardim e Decoração" },
+    { id: 7, nome: "Almofada Artesanal", preco: "R$ 35,00", avaliacao: 4.3, foto: "../assets/produtos/almofada.jpg", vendedor: "Mariana", categoria: "Quarto" },
+    { id: 8, nome: "Cobertor de Lã", preco: "R$ 90,00", avaliacao: 4.4, foto: "../assets/produtos/cobertor.jpg", vendedor: "Roberto", categoria: "Quarto" },
+    { id: 9, nome: "Porta Sabonete", preco: "R$ 20,00", avaliacao: 4.2, foto: "../assets/produtos/porta_sabonete.jpg", vendedor: "Elisa", categoria: "Banho" },
+    { id: 10, nome: "Fruteira de Madeira", preco: "R$ 100,00", avaliacao: 4.6, foto: "../assets/produtos/fruteira.jpg", vendedor: "Ricardo", categoria: "Cozinha" },
+    { id: 11, nome: "Jardineira Suspensa", preco: "R$ 120,00", avaliacao: 4.8, foto: "../assets/produtos/jardineira.jpg", vendedor: "Bianca", categoria: "Jardim e Decoração" },
+    { id: 12, nome: "Espelho Decorativo", preco: "R$ 75,00", avaliacao: 4.7, foto: "../assets/produtos/espelho.jpg", vendedor: "Juliana", categoria: "Jardim e Decoração" },
   ];
+  
 
   categorias.forEach((categoria) => {
     categoria.addEventListener("click", () => {
@@ -68,16 +69,43 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="buy-button">COMPRAR</button>
       </div>
     `;
-    return produtoElemento;
-  }
 
-  function adicionarListenersCompra() {
-    document.querySelectorAll(".buy-button").forEach((button) => {
-      button.addEventListener("click", () => {
+    const buyButton = produtoElemento.querySelector(".buy-button");
+    buyButton.addEventListener("click", () => {
+        const product = {
+            id: produto.id,
+            name: produto.nome,
+            price: parseFloat(produto.preco.replace('R$', '').replace(',', '.')),
+            quantity: 1,  // Quantidade inicial de 1
+            image: produto.foto,
+        };
+
+        // Recupera o carrinho existente ou cria um novo array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Verifica se o produto já está no carrinho
+        const existingProduct = cart.find(item => item.id === product.id);
+
+        if (existingProduct) {
+            // Se o produto já estiver no carrinho, aumenta a quantidade
+            existingProduct.quantity++;
+        } else {
+            // Se não, adiciona o novo produto ao carrinho
+            cart.push(product);
+        }
+
+        // Armazena o carrinho atualizado no localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Redireciona para a página do carrinho
         window.location.href = "carrinho.html";
-      });
     });
-  }
+
+    return produtoElemento;
+}
+
+
+
 
   function obterProdutosPorCategoria(categoria) {
     return todosProdutos.filter((produto) => produto.categoria === categoria);
