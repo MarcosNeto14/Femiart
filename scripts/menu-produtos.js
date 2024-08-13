@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const categorias = document.querySelectorAll("#list-categorias li");
   const productContainer = document.getElementById("product-container");
-  const searchBar = document.getElementById("search-bar");
   const searchInput = document.getElementById("in-pesquisa");
 
   const todosProdutos = [
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 12, nome: "Espelho Decorativo", preco: "R$ 75,00", avaliacao: 4.7, foto: "../assets/produtos/espelho.jpg", vendedor: "Juliana", categoria: "Jardim e Decoração" },
   ];
   
-
   categorias.forEach((categoria) => {
     categoria.addEventListener("click", () => {
       categorias.forEach((c) => c.classList.remove("active"));
@@ -28,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  searchBar.addEventListener("submit", (event) => {
-    event.preventDefault();
+  searchInput.addEventListener("input", () => {
     exibirProdutosPorPesquisa(searchInput.value.toLowerCase());
   });
 
@@ -80,32 +77,21 @@ document.addEventListener("DOMContentLoaded", () => {
             image: produto.foto,
         };
 
-        // Recupera o carrinho existente ou cria um novo array
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        // Verifica se o produto já está no carrinho
         const existingProduct = cart.find(item => item.id === product.id);
 
         if (existingProduct) {
-            // Se o produto já estiver no carrinho, aumenta a quantidade
             existingProduct.quantity++;
         } else {
-            // Se não, adiciona o novo produto ao carrinho
             cart.push(product);
         }
 
-        // Armazena o carrinho atualizado no localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Redireciona para a página do carrinho
         window.location.href = "carrinho.html";
     });
 
     return produtoElemento;
-}
-
-
-
+  }
 
   function obterProdutosPorCategoria(categoria) {
     return todosProdutos.filter((produto) => produto.categoria === categoria);
