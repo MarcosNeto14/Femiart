@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const categorias = document.querySelectorAll("#list-categorias li");
   const productContainer = document.getElementById("product-container");
   const searchInput = document.getElementById("in-pesquisa");
+  const filterButton = document.getElementById("filter-button");
+  const filterPanel = document.getElementById("filter-panel");
+  const minPriceInput = document.getElementById("min-price");
+  const maxPriceInput = document.getElementById("max-price");
+  const minRatingInput = document.getElementById("min-rating");
 
   const todosProdutos = [
     { id: 1, nome: "Sabonete Artesanal", preco: "R$ 10,00", avaliacao: 4.5, foto: "../assets/produtos/sabonete.jpg", vendedor: "Maria", categoria: "Banho" },
@@ -18,38 +23,77 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 12, nome: "Espelho Decorativo", preco: "R$ 75,00", avaliacao: 4.7, foto: "../assets/produtos/espelho.jpg", vendedor: "Juliana", categoria: "Jardim e Decoração" },
   ];
   
+  let currentCategoria = "Todos os Produtos";
+  let currentSearchQuery = "";
+
   categorias.forEach((categoria) => {
     categoria.addEventListener("click", () => {
       categorias.forEach((c) => c.classList.remove("active"));
       categoria.classList.add("active");
-      exibirProdutos(categoria.getAttribute("data-categoria"));
+      currentCategoria = categoria.getAttribute("data-categoria");
+      aplicarFiltros();
     });
   });
 
   searchInput.addEventListener("input", () => {
-    exibirProdutosPorPesquisa(searchInput.value.toLowerCase());
+    currentSearchQuery = searchInput.value.toLowerCase();
+    aplicarFiltros();
   });
 
-  function exibirProdutos(categoria) {
-    const produtos = categoria === "Todos os Produtos" ? todosProdutos : obterProdutosPorCategoria(categoria);
-    atualizarProdutos(produtos);
-  }
+  // Toggle filter panel visibility
+  filterButton.addEventListener("click", () => {
+    filterPanel.classList.toggle("hidden");
+  });
 
-  function exibirProdutosPorPesquisa(query) {
-    const produtos = todosProdutos.filter(
-      (produto) =>
-        produto.nome.toLowerCase().includes(query) ||
-        produto.categoria.toLowerCase().includes(query)
-    );
-    atualizarProdutos(produtos);
+  // Apply filters when inputs change
+  minPriceInput.addEventListener("input", aplicarFiltros);
+  maxPriceInput.addEventListener("input", aplicarFiltros);
+  minRatingInput.addEventListener("input", aplicarFiltros);
+
+  function aplicarFiltros() {
+    let produtosFiltrados = todosProdutos;
+
+    // Filter by category
+    if (currentCategoria !== "Todos os Produtos") {
+      produtosFiltrados = produtosFiltrados.filter((produto) => produto.categoria === currentCategoria);
+    }
+
+    // Filter by search query
+    if (currentSearchQuery) {
+      produtosFiltrados = produtosFiltrados.filter(
+        (produto) =>
+          produto.nome.toLowerCase().includes(currentSearchQuery) ||
+          produto.categoria.toLowerCase().includes(currentSearchQuery)
+      );
+    }
+
+    // Filter by price
+    const minPrice = parseFloat(minPriceInput.value.replace(',', '.')) || 0;
+    const maxPrice = parseFloat(maxPriceInput.value.replace(',', '.')) || Infinity;
+
+    produtosFiltrados = produtosFiltrados.filter((produto) => {
+      const precoNumber = parseFloat(produto.preco.replace('R$', '').replace('.', '').replace(',', '.'));
+      return precoNumber >= minPrice && precoNumber <= maxPrice;
+    });
+
+    // Filter by rating
+    const minRating = parseFloat(minRatingInput.value.replace(',', '.')) || 0;
+
+    produtosFiltrados = produtosFiltrados.filter((produto) => produto.avaliacao >= minRating);
+
+    atualizarProdutos(produtosFiltrados);
   }
 
   function atualizarProdutos(produtos) {
     productContainer.innerHTML = "";
+    if (produtos.length === 0) {
+      productContainer.innerHTML = "<p>Nenhum produto encontrado com os filtros aplicados.</p>";
+      return;
+    }
     produtos.forEach((produto) => {
       productContainer.appendChild(criarElementoProduto(produto));
     });
-    adicionarListenersCompra();
+    // adicionarListenersCompra(); // Not needed as the event listener is added in criarElementoProduto
   }
 
   function criarElementoProduto(produto) {
@@ -72,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const product = {
             id: produto.id,
             name: produto.nome,
-            price: parseFloat(produto.preco.replace('R$', '').replace(',', '.')),
+            price: parseFloat(produto.preco.replace('R$', '').replace('.', '').replace(',', '.')),
             quantity: 1,  // Quantidade inicial de 1
             image: produto.foto,
         };
@@ -93,12 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return produtoElemento;
   }
 
-  function obterProdutosPorCategoria(categoria) {
-    return todosProdutos.filter((produto) => produto.categoria === categoria);
-  }
-
   categorias[0].classList.add("active");
-  exibirProdutos(categorias[0].getAttribute("data-categoria"));
+  aplicarFiltros();
 });
 
 function gerarEstrelas(avaliacao) {

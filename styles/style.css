@@ -285,6 +285,64 @@ body {
   flex: 1;
 }
 
+/* CSS for the Advanced Filters Button and Panel */
+#filter-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+#filter-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+#filter-panel {
+  position: absolute;
+  top: 50px; /* Adjust as needed */
+  right: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  width: 300px;
+  z-index: 2;
+}
+
+#filter-panel.hidden {
+  display: none;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h4 {
+  margin-bottom: 10px;
+}
+
+.filter-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-section input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+
 /* PARA TELA DE PAGAMENTO ***************************************************************************************************************************8*/
 
 * {
