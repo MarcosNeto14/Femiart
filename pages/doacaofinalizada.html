@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
-    <title>Carrinho</title>
+    <title>Doação Finalizada</title>
+    <style>
+        .finalization-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .finalization-container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #129063;
+        }
+
+        .finalization-container .icon-container {
+            width: 150px;
+            height: 150px;
+            background-color: #129063;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+        }
+
+        .finalization-container img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .finalization-container p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="menu-bar">
@@ -49,20 +87,23 @@
                 onclick="location.href='carrinho.html';"
             />
         </div>
-    </div>    
-
-    <div id="cart-container" class="cart-container">
-        <h1>Meu Carrinho</h1>
-        <div id="cart-items">
-            <!-- Itens do carrinho serão exibidos aqui -->
+    </div>  
+    
+    <div class="finalization-container">
+        <div class="icon-container">
+            <img src="../assets/icons/coin.png" alt="Doação">
         </div>
-
-        <div class="cart-summary">
-            <h3>Resumo do Pedido</h3>
-            <p>Total: R$ <span id="cart-total">0.00</span></p>
-            <button id="checkout-btn">Finalizar Compra</button>
-        </div>
+        <h1>Doação Confirmada</h1>
+        <p>Nome da Vendedora: <strong id="vendedora-nome"></strong></p>
+        <p>Valor da Doação: R$<strong id="valor-doacao"></strong></p>
+        <p>Método de Pagamento: <strong id="metodo-pagamento"></strong></p>
     </div>
-    <script src="../scripts/carrinho.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('vendedora-nome').textContent = params.get('vendedora-nome');
+        document.getElementById('valor-doacao').textContent = params.get('valor-doacao');
+        document.getElementById('metodo-pagamento').textContent = params.get('metodo-pagamento');
+    </script>
 </body>
 </html>
