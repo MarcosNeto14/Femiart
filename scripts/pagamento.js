@@ -16,3 +16,7 @@ document.getElementById("continue-btn").addEventListener("click", function () {
     }, 1000); // Espera 1 segundo para a animação de saída
   }
 });
+
+document.getElementById('add-card-btn').addEventListener('click', function () {
+  window.location.href = 'adicionar_cartao.html';
+});

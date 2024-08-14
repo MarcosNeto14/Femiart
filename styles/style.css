@@ -745,3 +745,77 @@ footer {
     opacity: 0;
   }
 }
+
+.add-card-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.card-preview {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #323232;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-number,
+.card-name,
+.card-expiry {
+  font-size: 1.2em;
+}
+
+.card-number {
+  margin-bottom: 30px;
+}
+
+.card-name {
+  text-transform: uppercase;
+}
+
+.add-card-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-card-container label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.add-card-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-card-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-card-container button:hover {
+  background-color: #45a049;
+}

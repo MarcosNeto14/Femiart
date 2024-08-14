@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
+    <title>Adicionar Cartão de Crédito</title>
+  </head>
+  <body>
+    <div class="menu-bar">
+      <div id="logo" onclick="location.href='menu-produtos.html';">
+        <img src="../assets/logo.png" alt="Logo do Marketplace FemiArt" />
+      </div>
+      <form id="search-bar" action="#" method="post">
+        <input
+          type="text"
+          name="in-pesquisa"
+          id="in-pesquisa"
+          placeholder="Pesquisar produtos..."
+        />
+        <button type="submit"></button>
+      </form>
+      <div id="info-user">
+        <div id="icon-perfil">
+          <img src="../assets/icons/person_outline_24px.png" alt="Perfil" />
+        </div>
+        <p>
+          Olá, Fulano <br />
+          <a href="perfil.html">Minha Conta</a>
+        </p>
+      </div>
+      <div id="menu-icons">
+        <img id="icon-doacao" src="../assets/icons/coin.png" alt="Doação" />
+        <img id="list-fav" src="../assets/icons/Heart.png" alt="Favoritos" />
+        <img
+          id="icon-carrinho"
+          src="../assets/icons/carrinho.png"
+          alt="Carrinho"
+          onclick="location.href='carrinho.html';"
+        />
+      </div>
+    </div>
+
+    <div class="add-card-container">
+        <div class="card-preview">
+          <div class="card-front">
+            <div class="card-number">#### #### #### ####</div>
+            <div class="card-name">NOME NO CARTÃO</div>
+            <div class="card-expiry">MM/AA</div>
+          </div>
+        </div>
+        <h2>Adicionar Novo Cartão de Crédito</h2>
+        <form id="add-card-form">
+            <label for="card-number">Número do Cartão:</label>
+            <input
+              type="text"
+              id="card-number-input"
+              name="card-number"
+              placeholder="Digite o número do cartão"
+              maxlength="19"
+              required
+              pattern="\d*"
+            />
+          
+            <label for="card-name">Nome no Cartão:</label>
+            <input
+              type="text"
+              id="card-name-input"
+              name="card-name"
+              placeholder="Digite o nome impresso no cartão"
+              required
+              pattern="[A-Za-z\s]*"
+            />
+          
+            <label for="expiry-date">Data de Validade:</label>
+            <input type="month" id="expiry-date-input" name="expiry-date" required />
+          
+            <label for="cvv">CVV:</label>
+            <input
+              type="text"
+              id="cvv-input"
+              name="cvv"
+              placeholder="Digite o código de segurança"
+              maxlength="3"
+              required
+              pattern="\d*"
+            />
+          
+            <button type="button" id="save-card-btn">Cadastrar Cartão</button>
+          </form>
+          
+      </div>
+  
+      <script src="../scripts/card.js"></script>
+      
+    </body>
