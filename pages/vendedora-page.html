@@ -50,30 +50,61 @@
             />
         </div>
     </div>
-    
 
     <div class="profile-container">
-        <div class="profile-header">
-            <img class="profile-pic" src="../assets/foto_vendedora.jpg" alt="Foto da Vendedora" />
-            <div class="profile-info">
-                <h1 class="vendor-name">Rosana Barros</h1>
-                <h2>Avaliação Média: 
-                    <span class="rating">
-                        <i class="fas fa-star"></i>
-                    </span>
-                    4.7
-                </h2>
-                <h2>
-                    <img src="../assets/cadastro.png" alt="No Femiart desde:" class="info-icon" />
-                    No Femiart Desde: Março de 2022
-                </h2>
-                <p>
-                    <img src="../assets/venda.png" alt="Número de Vendas" class="info-icon" />
-                    Número de Vendas: 150
-                </p>
+        <div class="profile-content">
+            <div class="profile-header">
+                <img class="profile-pic" src="../assets/foto_vendedora.jpg" alt="Foto da Vendedora" />
+                <div class="profile-info">
+                    <h1 class="vendor-name">Rosana Barros</h1>
+                    <h2>Avaliação Média: 
+                        <span class="rating">
+                            <i class="fas fa-star"></i>
+                        </span>
+                        4.7
+                    </h2>
+                    <h2>
+                        <img src="../assets/cadastro.png" alt="No Femiart desde:" class="info-icon" />
+                        No Femiart Desde: Março de 2022
+                    </h2>
+                    <p>
+                        <img src="../assets/venda.png" alt="Número de Vendas" class="info-icon" />
+                        Número de Vendas: 150
+                    </p>
+                </div>
             </div>
+    
+            <div class="vendor-story-carousel">
+                <div class="carousel-slide">
+                    <p><strong>1. </strong>"Comecei no artesanato como uma forma de terapia e acabou se tornando minha paixão."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>2. </strong>"Logo percebi a importância de incorporar sustentabilidade nos meus produtos, utilizando materiais recicláveis e orgânicos."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>3. </strong>"Um dos momentos mais marcantes foi quando uma cliente me disse que meu produto mudou a vida dela, inspirando-a a seguir uma carreira criativa."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>4. </strong>"A partir de 2023, me associei à corporação Recife é Arte, uma organização que apoia artesãs locais. Isso abriu muitas portas e me ajudou a expandir meu alcance."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>5. </strong>"Com o apoio da corporação, comecei a participar de feiras e eventos, onde pude compartilhar minha arte e aprender com outras artesãs."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>6. </strong>"Meu objetivo é continuar inovando no artesanato, sempre buscando novas formas de unir tradição e sustentabilidade em meus produtos."</p>
+                </div>
+                <div class="carousel-slide">
+                    <p><strong>7. </strong>"Meu desejo é que, através do meu trabalho, eu possa inspirar outras mulheres a encontrar na arte uma fonte de força e realização pessoal."</p>
+                </div>
+                <div class="carousel-controls">
+                    <button class="prev-slide">&#10094;</button>
+                    <img src="../assets/logo.png" alt="Logo" class="carousel-logo" />
+                    <button class="next-slide">&#10095;</button>
+                </div>
+            </div>
+            
         </div>
-
+    
         <div class="product-categories">
             <h2>Categorias de Produtos</h2>
             <div class="categories-grid">
@@ -97,5 +128,28 @@
             </div>
         </div>
     </div>
+    
+    
 </body>
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    document.querySelector('.next-slide').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    });
+
+    document.querySelector('.prev-slide').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    });
+</script>
 </html>

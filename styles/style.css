@@ -501,6 +501,66 @@ body {
   }
 }
 
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.carousel-logo {
+  width: 50px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+.vendor-story-carousel {
+  background-color: #129063;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  max-width: 350px;
+  margin-left: 20px;
+  font-family: 'Georgia', serif;
+}
+
+.carousel-slide {
+  display: none;
+}
+
+.carousel-slide:first-child {
+  display: block;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.prev-slide,
+.next-slide {
+  background-color: #fff;
+  border: none;
+  color: #129063;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+  background-color: #e0e0e0;
+}
+
+
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Estilos para os novos produtos */
 #list-categorias ul {
