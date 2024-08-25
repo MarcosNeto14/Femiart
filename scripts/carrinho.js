@@ -1,46 +1,62 @@
-let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+let userId = localStorage.getItem("userId"); // Supondo que você tenha armazenado o ID do usuário no localStorage
+let cartItems = [];
 let lastItemIdToRemove = null;
 
 function updateCart() {
-    const cartContainer = document.getElementById("cart-items");
-    cartContainer.innerHTML = "";
+  const cartContainer = document.getElementById("cart-items");
+  cartContainer.innerHTML = "";
 
-    let total = 0;
+  let total = 0;
 
-    cartItems.forEach((item) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+  cartItems.forEach((item) => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
 
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
 
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div>
-                <h4>${item.name}</h4>
-                <p>${item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-            </div>
-            <div>
-                <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">-</button>
-                <span>${item.quantity}</span>
-                <button class="quantity-btn" onclick="increaseQuantity(${item.id})">+</button>
-            </div>
-            <p>${itemTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-            <button class="remove-btn" onclick="confirmRemoveItem(${item.id})">Remover</button>
-        `;
+    cartItem.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+      <div class="cart-item-details">
+        <h4>${item.name}</h4>
+        <p>${item.price.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}</p>
+        <div class="cart-item-quantity">
+          <button class="quantity-btn" onclick="decreaseQuantity(${
+            item.id
+          })">-</button>
+          <span>${item.quantity}</span>
+          <button class="quantity-btn" onclick="increaseQuantity(${
+            item.id
+          })">+</button>
+        </div>
+        <p>${itemTotal.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        })}</p>
+        <button class="remove-btn" onclick="confirmRemoveItem(${
+          item.id
+        })">Remover</button>
+      </div>
+    `;
 
-        cartContainer.appendChild(cartItem);
-    });
+    cartContainer.appendChild(cartItem);
+  });
 
-    document.getElementById("cart-total").innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.getElementById("cart-total").innerText = total.toLocaleString(
+    "pt-BR",
+    { style: "currency", currency: "BRL" }
+  );
 }
 
 function decreaseQuantity(id) {
   const item = cartItems.find((item) => item.id === id);
   if (item.quantity > 1) {
-      item.quantity--;
+    item.quantity--;
   } else {
-      confirmRemoveItem(id);
+    confirmRemoveItem(id);
   }
   saveCartAndUpdate();
 }
@@ -57,15 +73,14 @@ function confirmRemoveItem(id) {
     const confirmModal = document.getElementById("confirmModal");
     confirmModal.style.display = "block";
 
-    document.getElementById("confirmBtn").onclick = function() {
+    document.getElementById("confirmBtn").onclick = function () {
       removeItem(id);
       confirmModal.style.display = "none";
     };
 
-    document.getElementById("cancelBtn").onclick = function() {
+    document.getElementById("cancelBtn").onclick = function () {
       confirmModal.style.display = "none";
     };
-
   } else {
     removeItem(id);
   }
@@ -77,7 +92,7 @@ function removeItem(id) {
 }
 
 function saveCartAndUpdate() {
-  localStorage.setItem('cart', JSON.stringify(cartItems));
+  localStorage.setItem("cart", JSON.stringify(cartItems));
   updateCart();
 }
 
@@ -86,15 +101,15 @@ function checkout() {
     const modal = document.getElementById("emptyCartModal");
     modal.style.display = "block";
 
-    document.querySelector(".close-btn").onclick = function() {
+    document.querySelector(".close-btn").onclick = function () {
       modal.style.display = "none";
-    }
+    };
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
-    }
+    };
   } else {
     window.location.href = "pagamento.html";
   }
@@ -102,4 +117,9 @@ function checkout() {
 
 document.getElementById("checkout-btn").addEventListener("click", checkout);
 
-updateCart();
+function loadCart() {
+  cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  updateCart();
+}
+
+loadCart();

@@ -1,98 +1,110 @@
-const produtos = [
+export const produtos = [
   {
+    id: 1,
     nome: "Sabonete Artesanal",
     preco: "R$ 10,00",
     avaliacao: 4.5,
     foto: "../assets/produtos/sabonete.jpg",
     vendedor: "Maria",
-    categoria: "Banho"
+    categoria: "Banho",
   },
   {
+    id: 2,
     nome: "Panela de Barro",
     preco: "R$ 120,00",
     avaliacao: 4.8,
     foto: "../assets/produtos/panela.jpg",
     vendedor: "José",
-    categoria: "Cozinha"
+    categoria: "Cozinha",
   },
   {
+    id: 3,
     nome: "Toalha de Banho Bordada",
     preco: "R$ 45,00",
     avaliacao: 4.7,
     foto: "../assets/produtos/toalha.jpg",
     vendedor: "Ana",
-    categoria: "Banho"
+    categoria: "Banho",
   },
   {
+    id: 4,
     nome: "Conjunto de Talheres",
     preco: "R$ 80,00",
     avaliacao: 4.6,
     foto: "../assets/produtos/talheres.jpg",
     vendedor: "Carlos",
-    categoria: "Cozinha"
+    categoria: "Cozinha",
   },
   {
+    id: 5,
     nome: "Vaso de Cerâmica",
     preco: "R$ 60,00",
     avaliacao: 4.5,
     foto: "../assets/produtos/vaso.jpg",
     vendedor: "Fernanda",
-    categoria: "Jardim e Decoração"
+    categoria: "Jardim e Decoração",
   },
   {
+    id: 6,
     nome: "Quadro Decorativo",
     preco: "R$ 150,00",
     avaliacao: 4.9,
     foto: "../assets/produtos/quadro.jpg",
     vendedor: "Lucas",
-    categoria: "Jardim e Decoração"
+    categoria: "Jardim e Decoração",
   },
   {
+    id: 7,
     nome: "Almofada Artesanal",
     preco: "R$ 35,00",
     avaliacao: 4.3,
     foto: "../assets/produtos/almofada.jpg",
     vendedor: "Mariana",
-    categoria: "Quarto"
+    categoria: "Quarto",
   },
   {
+    id: 8,
     nome: "Cobertor de Lã",
     preco: "R$ 90,00",
     avaliacao: 4.4,
     foto: "../assets/produtos/cobertor.jpg",
     vendedor: "Roberto",
-    categoria: "Quarto"
+    categoria: "Quarto",
   },
   {
+    id: 9,
     nome: "Porta Sabonete",
     preco: "R$ 20,00",
     avaliacao: 4.2,
     foto: "../assets/produtos/porta_sabonete.jpg",
     vendedor: "Elisa",
-    categoria: "Banho"
+    categoria: "Banho",
   },
   {
+    id: 10,
     nome: "Fruteira de Madeira",
     preco: "R$ 100,00",
     avaliacao: 4.6,
     foto: "../assets/produtos/fruteira.jpg",
     vendedor: "Ricardo",
-    categoria: "Cozinha"
+    categoria: "Cozinha",
   },
   {
+    id: 11,
     nome: "Jardineira Suspensa",
     preco: "R$ 120,00",
     avaliacao: 4.8,
     foto: "../assets/produtos/jardineira.jpg",
     vendedor: "Bianca",
-    categoria: "Jardim e Decoração"
+    categoria: "Jardim e Decoração",
   },
   {
+    id: 12,
     nome: "Espelho Decorativo",
     preco: "R$ 75,00",
     avaliacao: 4.7,
     foto: "../assets/produtos/espelho.jpg",
     vendedor: "Juliana",
-    categoria: "Jardim e Decoração"
-  }
+    categoria: "Jardim e Decoração",
+  },
 ];
