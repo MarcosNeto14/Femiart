@@ -111,6 +111,29 @@ function checkout() {
       }
     };
   } else {
+    openDatabase().then((db) => {
+      const order = {
+        userId: userId,
+        items: cartItems,
+        date: new Date().toISOString(),
+        total: cartItems.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        ),
+      };
+
+      addOrder(db, order).then(() => {
+        localStorage.removeItem("cart");
+        cartItems = [];
+        updateCart();
+        // Salva os itens comprados por ID no localStorage
+        const purchasedItemIds = cartItems.map((item) => item.id);
+        localStorage.setItem(
+          "purchasedItemIds",
+          JSON.stringify(purchasedItemIds)
+        );
+      });
+    });
     window.location.href = "pagamento.html";
   }
 }

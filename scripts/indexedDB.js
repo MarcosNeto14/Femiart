@@ -28,7 +28,53 @@ function openDatabase() {
         const cartStore = db.createObjectStore("carts", { keyPath: "userId" });
         console.log('Object store "carts" criado com sucesso');
       }
+
+      if (!db.objectStoreNames.contains("orders")) {
+        const orderStore = db.createObjectStore("orders", {
+          keyPath: "orderId",
+          autoIncrement: true,
+        });
+        console.log('Object store "orders" criado com sucesso');
+      }
     };
+  });
+}
+
+// Função para registrar uma nova compra
+function addOrder(db, order) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(["orders"], "readwrite");
+    const orderStore = transaction.objectStore("orders");
+    const request = orderStore.add(order);
+
+    request.onsuccess = () => {
+      console.log("Compra registrada com sucesso");
+      resolve();
+    };
+
+    request.onerror = (event) => {
+      console.error("Erro ao registrar a compra:", event);
+      reject(event);
+    };
+  });
+}
+
+function getOrders(userId) {
+  return new Promise((resolve, reject) => {
+    openDatabase().then((db) => {
+      const transaction = db.transaction(["orders"], "readonly");
+      const orderStore = transaction.objectStore("orders");
+      const request = orderStore.index("userId").getAll(userId);
+
+      request.onsuccess = (event) => {
+        resolve(event.target.result);
+      };
+
+      request.onerror = (event) => {
+        console.error("Erro ao obter compras:", event);
+        reject(event);
+      };
+    });
   });
 }
 
@@ -64,6 +110,8 @@ function authenticateUser(db, email, hashedPassword) {
         console.log("Usuário autenticado com sucesso");
         sessionStorage.setItem("loggedInUserEmail", email); // Salva o email do usuário logado na sessão
         localStorage.setItem("nomeUsuario", user.name); // Salva o nome completo do usuário no localStorage
+        localStorage.setItem("loggedInUserEmail", email); // Salva o nome completo do usuário no localStorage
+        localStorage.setItem("loggedInUserPhone", user.phone); // Salva o nome completo do usuário no localStorage
         window.location.href = "menu-produtos.html"; // Redireciona após o login
         resolve(true);
       } else {

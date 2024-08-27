@@ -109,7 +109,7 @@
         <div class="profile-header">
             <img class="profile-pic" src="../assets/foto_vendedora.jpg" alt="Foto de Cleide da Silva">
             <div class="profile-info">
-                <h1 class="vendor-name">Cleide da Silva</h1>
+                <h1 class="vendor-name"></h1>
                 <h2>
                     <img src="../assets/icons/phone.png" alt="Telefone" class="info-icon" />
                     Telefone: <span id="phone-number"></span>
@@ -158,11 +158,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var phoneNumber = localStorage.getItem('phoneNumber') || '(81) 98765-4321';
-            var email = localStorage.getItem('email') || 'teste@gmail.com';
+            function formatPhoneNumber(phoneNumber) {
+                const regex = /^(\d{2})(\d{1})(\d{4})(\d{4})$/;
+                const match = phoneNumber.match(regex);
+                if (match) {
+                    return `(${match[1]}) ${match[2]} ${match[3]}-${match[4]}`;
+                }
+                return phoneNumber; // Retorna o número original se não corresponder ao formato esperado
+            }
+            // Recupera o nome completo e email do localStorage
+            var nomeUsuario = localStorage.getItem('nomeUsuario') || 'Nome Placeholder';
+            var email = localStorage.getItem('loggedInUserEmail') || 'email.placeholder@example.com';
+            var phoneNumber = localStorage.getItem('loggedInUserPhone') || '81999999999';
 
-            document.getElementById('phone-number').textContent = phoneNumber;
+            // Formata o número de telefone para o formato brasileiro
+            var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+
+            // Atualiza os elementos da página com as informações do usuário logado
+            document.querySelector('.vendor-name').textContent = nomeUsuario;
             document.getElementById('email').textContent = email;
+            document.getElementById('phone-number').textContent = formattedPhoneNumber;
         });
     </script>
     <script src="../scripts/indexedDB.js"></script>
