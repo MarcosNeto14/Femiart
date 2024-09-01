@@ -1,5 +1,4 @@
 import { allProducts } from "./produtos-status-compra.js";
-import { produtos } from "./produtos.js";
 
 let purchasedItems = [];
 
@@ -16,32 +15,36 @@ function updatePurchases() {
     purchaseItem.classList.add("cart-item");
 
     purchaseItem.innerHTML = `
-      <img src="${item.image}" alt="${
+            <img src="${item.image}" alt="${
       item.name
     }" class="item-image" style="width: 300px; height: auto; object-fit: cover;">
-      <div class="item-details">
-        <h4>${item.name}</h4>
-        <p>${item.price.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        })}</p>
-        <p>Data da Compra: ${item.purchaseDate}</p>
-        <p>Vendedor: ${item.vendor}</p>
-        <p>Tempo de Entrega: ${item.deliveryTime}</p>
-        <p>Status: ${item.status}</p>
-      </div>
-    `;
+            <div class="item-details">
+                <h4>${item.name}</h4>
+                <p>${item.price.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}</p>
+                <p>Data da Compra: ${item.purchaseDate}</p>
+                <p>Vendedor: ${item.vendor}</p>
+                <p>Tempo de Entrega: ${item.deliveryTime}</p>
+                <p>Status: ${item.status}</p>
+            </div>
+        `;
 
     purchaseContainer.appendChild(purchaseItem);
   });
 
-  document.getElementById("total-compras").innerText = total.toFixed(2);
+  document.getElementById("total-compras").innerText = total.toLocaleString(
+    "pt-BR",
+    { style: "currency", currency: "BRL" }
+  );
 }
 
 function loadPurchasedItems() {
   const purchasedItemIds =
     JSON.parse(localStorage.getItem("purchasedItemIds")) || [];
 
+  // Filtra os produtos não entregues para exibição
   purchasedItems = allProducts.filter((item) =>
     purchasedItemIds.includes(item.id)
   );
@@ -49,6 +52,7 @@ function loadPurchasedItems() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  loadPurchasedItems();
   const chatButtons = document.querySelectorAll(".chat-icon-container");
   const chatContainer = document.getElementById("chat-container");
   const minimizeButton = document.getElementById("minimize-chat");

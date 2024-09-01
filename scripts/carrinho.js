@@ -117,21 +117,21 @@ function checkout() {
         items: cartItems,
         date: new Date().toISOString(),
         total: cartItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
+          (sum, item) => sum + item.price * item.quantity
         ),
       };
+
+      // Salva os itens comprados por ID no localStorage ANTES de limpar o carrinho
+      const purchasedItemIds = cartItems.map((item) => item.id);
+      localStorage.setItem(
+        "purchasedItemIds",
+        JSON.stringify(purchasedItemIds)
+      );
 
       addOrder(db, order).then(() => {
         localStorage.removeItem("cart");
         cartItems = [];
         updateCart();
-        // Salva os itens comprados por ID no localStorage
-        const purchasedItemIds = cartItems.map((item) => item.id);
-        localStorage.setItem(
-          "purchasedItemIds",
-          JSON.stringify(purchasedItemIds)
-        );
       });
     });
     window.location.href = "pagamento.html";
