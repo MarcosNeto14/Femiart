@@ -129,7 +129,30 @@
         <h1>Fazer uma Doação</h1>
         <form id="donation-form" action="pagamentodoacao.html" method="get">
             <label for="vendedora-nome">Nome da vendedora:</label>
-            <input type="text" id="vendedora-nome" name="vendedora-nome" placeholder="Digite o nome" required>
+            <select id="vendedora-nome" name="vendedora-nome" required>
+                <!-- Nomes de vendedores gerados aleatoriamente -->
+                <script>
+                    const vendedores = [
+                        "Ana Clara",
+                        "Beatriz Silva",
+                        "Camila Oliveira",
+                        "Daniela Santos",
+                        "Fernanda Lima",
+                        "Gabriela Costa",
+                        "Helena Almeida",
+                        "Isabela Ribeiro",
+                        "Juliana Mendes",
+                        "Larissa Souza"
+                    ];
+
+                    vendedores.forEach(function(nome) {
+                        const option = document.createElement('option');
+                        option.value = nome;
+                        option.textContent = nome;
+                        document.getElementById('vendedora-nome').appendChild(option);
+                    });
+                </script>
+            </select>
 
             <label for="valor-doacao">Escolha um valor:</label>
             <select id="valor-doacao" name="valor-doacao" required>
@@ -146,6 +169,8 @@
                 <input type="number" id="outro-valor" name="outro-valor" min="1" step="0.01" placeholder="Ex: 25.00">
             </div>
 
+            <input type="hidden" id="valor-final" name="valor-final">
+
             <button type="submit" id="escolher-pagamento">Escolher Método de Pagamento</button>
         </form>
     </div>
@@ -153,25 +178,26 @@
     <script>
         const valorDoacao = document.getElementById('valor-doacao');
         const outroValorContainer = document.getElementById('outro-valor-container');
-        const donationForm = document.getElementById('donation-form');
+        const outroValorInput = document.getElementById('outro-valor');
+        const valorFinalInput = document.getElementById('valor-final');
 
         valorDoacao.addEventListener('change', function() {
             if (this.value === 'outro') {
                 outroValorContainer.style.display = 'block';
             } else {
                 outroValorContainer.style.display = 'none';
+                valorFinalInput.value = this.value;
             }
         });
 
-        donationForm.onsubmit = function() {
-            const valorDoacao = document.getElementById('valor-doacao').value;
-            const outroValor = document.getElementById('outro-valor').value;
-            const vendedoraNome = document.getElementById('vendedora-nome').value;
-            const valorFinal = valorDoacao === 'outro' ? outroValor : valorDoacao;
-            
-            // Append data to query string
-            this.action += `?vendedora-nome=${encodeURIComponent(vendedoraNome)}&valor-doacao=${encodeURIComponent(valorFinal)}`;
-            return true;
+        outroValorInput.addEventListener('input', function() {
+            valorFinalInput.value = this.value;
+        });
+
+        document.getElementById('donation-form').onsubmit = function() {
+            if (valorDoacao.value === 'outro') {
+                valorFinalInput.value = outroValorInput.value;
+            }
         };
     </script>
     <script src="../scripts/indexedDB.js"></script>
