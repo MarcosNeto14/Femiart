@@ -8,6 +8,30 @@
     <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
     <title>Detalhes do Produto</title>
     <style>
+        #policies-window {
+            display: none;
+            position: absolute;
+            top: 100px; /* Adjusted to be below the icon */
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 250px; /* Narrower width */
+            max-height: 380px; /* Limit vertical space */
+            overflow-y: auto; /* Allow scrolling if content exceeds max-height */
+        }
+
+        #policies-window ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #policies-window ul li {
+            margin-bottom: 10px;
+        }
         body {
             background-color: #f4f4f4;
             margin: 0;
@@ -160,8 +184,36 @@
                 alt="Carrinho"
                 onclick="location.href='carrinho.html';"
             />
+            <img id="icon-policies" src="../assets/icons/info.png" alt="Políticas de Compra" />
         </div>
+    </div>    
+
+    <div id="policies-window" class="policies-window">
+        <ul>
+            <li>1.Garantia de Compra: Todos os produtos têm garantia contra defeitos de fabricação.</li>
+            <li>2.Prazo de Envio: Os pedidos são processados e enviados em até 3 dias úteis.</li>
+            <li>3.Email para Reclamações: Para quaisquer problemas, entre em contato pelo email: femiart@gmail.com.</li>
+            <li>4.Política de Trocas: Produtos podem ser trocados em até 7 dias após o recebimento.</li>
+            <li>5.Pagamento Seguro: Todas as transações são realizadas em ambiente seguro.</li>
+        </ul>
     </div>
+
+    <script src="../scripts/carrinho.js"></script>
+    <script src="../scripts/indexedDB.js"></script>
+    <script>
+        const iconPolicies = document.getElementById('icon-policies');
+        const policiesWindow = document.getElementById('policies-window');
+
+        policiesWindow.style.display = 'none';  // Start with the window hidden
+
+        iconPolicies.addEventListener('click', () => {
+            if (policiesWindow.style.display === 'none') {
+                policiesWindow.style.display = 'block';
+            } else {
+                policiesWindow.style.display = 'none';
+            }
+        });
+    </script>
     
 
     <div class="container">

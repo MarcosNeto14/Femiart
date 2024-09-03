@@ -7,6 +7,8 @@ export const produtos = [
     foto: "../assets/produtos/sabonete.jpg",
     vendedor: "Maria",
     categoria: "Banho",
+    vendas: 1,
+    avaliacaoUsuario: "Produto muito bom! A fragrância é agradável e a qualidade do sabonete é ótima. Poderia ser um pouco maior, mas no geral, estou muito satisfeito.",
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ export const produtos = [
     foto: "../assets/produtos/panela.jpg",
     vendedor: "José",
     categoria: "Cozinha",
+    vendas: 1,
+    avaliacaoUsuario: "Excelente panela! O calor é distribuído uniformemente, e os alimentos ficam com um sabor maravilhoso. Vale cada centavo.",
   },
   {
     id: 3,
@@ -25,6 +29,8 @@ export const produtos = [
     foto: "../assets/produtos/toalha.jpg",
     vendedor: "Ana",
     categoria: "Banho",
+    vendas: 1,
+    avaliacaoUsuario: "Toalha de alta qualidade, o bordado é muito bonito e o tecido é muito macio. Recomendo fortemente!",
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ export const produtos = [
     foto: "../assets/produtos/talheres.jpg",
     vendedor: "Carlos",
     categoria: "Cozinha",
+    vendas: 1,
+    avaliacaoUsuario: "Talheres de ótima qualidade, com acabamento impecável. Apenas um dos garfos tinha uma pequena imperfeição, mas nada grave.",
   },
   {
     id: 5,
@@ -43,6 +51,8 @@ export const produtos = [
     foto: "../assets/produtos/vaso.jpg",
     vendedor: "Fernanda",
     categoria: "Jardim e Decoração",
+    vendas: 1,
+    avaliacaoUsuario: "Vaso muito bonito e bem acabado. O design é moderno e combina perfeitamente com a decoração da minha sala.",
   },
   {
     id: 6,
@@ -52,6 +62,8 @@ export const produtos = [
     foto: "../assets/produtos/quadro.jpg",
     vendedor: "Lucas",
     categoria: "Jardim e Decoração",
+    vendas: 1,
+    avaliacaoUsuario: "O quadro é simplesmente maravilhoso! As cores são vibrantes, e o acabamento é perfeito. Superou minhas expectativas.",
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ export const produtos = [
     foto: "../assets/produtos/almofada.jpg",
     vendedor: "Mariana",
     categoria: "Quarto",
+    vendas: 1,
+    avaliacaoUsuario: "A almofada é bem bonita e confortável, mas a cor não era exatamente como eu esperava. Ainda assim, é um bom produto.",
   },
   {
     id: 8,
@@ -70,6 +84,8 @@ export const produtos = [
     foto: "../assets/produtos/cobertor.jpg",
     vendedor: "Roberto",
     categoria: "Quarto",
+    vendas: 1,
+    avaliacaoUsuario: "Cobertor muito aconchegante e quente, ideal para o inverno. O único ponto negativo é que ele soltou um pouco de fiapos nas primeiras lavagens.",
   },
   {
     id: 9,
@@ -79,6 +95,8 @@ export const produtos = [
     foto: "../assets/produtos/porta_sabonete.jpg",
     vendedor: "Elisa",
     categoria: "Banho",
+    vendas: 1,
+    avaliacaoUsuario: "Funciona bem e tem um design simples, mas o material poderia ser um pouco mais resistente. No geral, cumpre o que promete.",
   },
   {
     id: 10,
@@ -88,6 +106,8 @@ export const produtos = [
     foto: "../assets/produtos/fruteira.jpg",
     vendedor: "Ricardo",
     categoria: "Cozinha",
+    vendas: 1,
+    avaliacaoUsuario: "Fruteira muito bem feita e resistente. O design é bonito e prático. Só achei um pouco cara pelo tamanho.",
   },
   {
     id: 11,
@@ -97,6 +117,8 @@ export const produtos = [
     foto: "../assets/produtos/jardineira.jpg",
     vendedor: "Bianca",
     categoria: "Jardim e Decoração",
+    vendas: 1,
+    avaliacaoUsuario: "Ótima jardineira! Fácil de instalar e muito resistente. As plantas ficaram lindas nela. Recomendo!",
   },
   {
     id: 12,
@@ -106,5 +128,7 @@ export const produtos = [
     foto: "../assets/produtos/espelho.jpg",
     vendedor: "Juliana",
     categoria: "Jardim e Decoração",
+    vendas: 1,
+    avaliacaoUsuario: "Espelho muito bonito e de boa qualidade. Apenas tive que trocar a moldura porque veio com um pequeno defeito, mas o atendimento foi excelente.",
   },
 ];

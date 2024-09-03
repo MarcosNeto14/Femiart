@@ -1,68 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/output.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <link rel="stylesheet" href="../styles/output.css" />
     <link rel="shortcut icon" type="image/jpg" href="../assets/logo.png" />
     <title>Femiart - Registro</title>
     <style>
-      /* Adiciona padding aos campos de input */
-      input[type="text"],
-      input[type="phone"],
-      input[type="email"],
-      input[type="password"] {
-        padding: 10px; /* Ajuste este valor conforme necessário */
+      /* Estilos personalizados */
+
+      body {
+        background-color: #f3f4f6;
       }
-      /* Adiciona padding ao botão de registrar-se */
+
+      /* Container principal do formulário */
+      .form-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 20px;
+      }
+
+      /* Estilos dos campos de entrada */
+      .input-field {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #d1d5db;
+        border-radius: 9999px;
+        font-size: 14px;
+        color: #374151;
+        transition: border-color 0.2s;
+      }
+
+      .input-field:focus {
+        outline: none;
+        border-color: #10b981;
+        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      }
+
+      /* Layout de grid para campos agrupados */
+      .grid-cols-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .grid-cols-3 {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 16px;
+      }
+
+      /* Estilo do botão de registro */
       .register-button {
-        padding-top: 50px; /* Ajuste este valor conforme necessário */
+        background-color: #129063;
+        color: #ffffff;
+        padding: 12px;
+        border: none;
+        border-radius: 9999px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s;
       }
-      .pass-confirm-field,
-      .password-field,
-      .phone-field,
-      .email-field,
-      .name-field {
-        padding-top: 30px; /* Ajuste este valor conforme necessário */
+
+      .register-button:hover {
+        background-color: #0e7550;
+      }
+
+      /* Responsividade */
+      @media (max-width: 640px) {
+        .grid-cols-2,
+        .grid-cols-3 {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
-  <body
-    class="flex flex-col justify-center items-center min-h-screen bg-gray-100"
-  >
-    <header class="h-[200px] flex flex-col justify-center items-center">
+  <body class="flex flex-col items-center min-h-screen">
+    <header class="flex flex-col items-center mt-8">
       <!-- LOGO -->
       <img
         src="../assets/logo.png"
-        alt="LogoFemiart"
-        class="w-32 h-32 mt-6 mb-6 animate__animated animate__slideInDown"
-        style="
-          -webkit-filter: drop-shadow(2px 2px 2px #979797);
-          filter: drop-shadow(2px 2px 2px #979797);
-        "
+        alt="Logo Femiart"
+        class="w-24 h-24 animate__animated animate__slideInDown"
+        style="filter: drop-shadow(2px 2px 2px #979797);"
       />
-      <div
-        class="text-2xl md:text-3xl text-black font-bold text-center mt-2 mb-2 animate__animated animate__slideInLeft"
+      <h1
+        class="text-3xl font-bold text-black mt-4 animate__animated animate__slideInLeft"
       >
         Registro
-      </div>
+      </h1>
     </header>
 
-    <!-- Form Container -->
+    <!-- Container do Formulário -->
     <main
-      class="max-w-md min-w-32 p-2 bg-white rounded-lg animate__animated animate__fadeIn animate__delay-1s"
-      style="width: 400px"
+      class="form-container animate__animated animate__fadeIn animate__delay-1s"
     >
       <form id="registerForm" class="space-y-4">
-        <!-- Name Field -->
-        <div class="max-w-lg p-8 name-field">
-          <label
-            for="name"
-            class="block text-sm font-medium rounded-full text-gray-700"
+        <!-- Nome Completo -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700"
             >Nome Completo</label
           >
           <input
@@ -70,82 +116,189 @@
             id="name"
             name="name"
             required
-            class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
+            class="input-field mt-1"
+            placeholder="Ex: Maria Silva"
           />
         </div>
-        <!-- Phone Field -->
-        <div class="max-w-lg p-8 phone-field">
-          <label
-            for="phone"
-            class="block text-sm font-medium rounded-full text-gray-700"
-            >Telefone</label
-          >
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            required
-            class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          />
+
+        <!-- Telefone e Email -->
+        <div class="grid-cols-2">
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700"
+              >Telefone</label
+            >
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              required
+              class="input-field mt-1"
+              placeholder="(XX) XXXXX-XXXX"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="input-field mt-1"
+              placeholder="exemplo@dominio.com"
+            />
+          </div>
         </div>
-        <!-- Email Field -->
-        <div class="max-w-lg p-8 email-field">
-          <label
-            for="email"
-            class="block text-sm font-medium rounded-full text-gray-700"
-            >Email</label
-          >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          />
+
+        <!-- Senha e Confirmação -->
+        <div class="grid-cols-2">
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+              >Senha</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              class="input-field mt-1"
+              placeholder="Mínimo 6 caracteres"
+            />
+          </div>
+          <div>
+            <label
+              for="passconfirm"
+              class="block text-sm font-medium text-gray-700"
+              >Confirmar Senha</label
+            >
+            <input
+              type="password"
+              id="passconfirm"
+              name="passconfirm"
+              required
+              class="input-field mt-1"
+              placeholder="Repita a senha"
+            />
+          </div>
         </div>
-        <!-- Password Field -->
-        <div class="max-w-lg p-8 password-field">
-          <label
-            for="password"
-            class="block text-sm font-medium rounded-full text-gray-700"
-            >Senha</label
-          >
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          />
+
+        <!-- Rua e Número -->
+        <div class="grid-cols-3">
+          <div>
+            <label for="street" class="block text-sm font-medium text-gray-700"
+              >Rua</label
+            >
+            <input
+              type="text"
+              id="street"
+              name="street"
+              required
+              class="input-field mt-1"
+              placeholder="Nome da rua"
+            />
+          </div>
+          <div>
+            <label for="number" class="block text-sm font-medium text-gray-700"
+              >Número</label
+            >
+            <input
+              type="text"
+              id="number"
+              name="number"
+              required
+              class="input-field mt-1"
+              placeholder="123"
+            />
+          </div>
+          <div>
+            <label
+              for="complement"
+              class="block text-sm font-medium text-gray-700"
+              >Complemento</label
+            >
+            <input
+              type="text"
+              id="complement"
+              name="complement"
+              class="input-field mt-1"
+              placeholder="Apto, bloco, etc."
+            />
+          </div>
         </div>
-        <!-- Password Confirm Field -->
-        <div class="max-w-lg p-8 pass-confirm-field">
-          <label
-            for="passconfirm"
-            class="block text-sm font-medium rounded-full text-gray-700"
-            >Confirme sua senha</label
-          >
-          <input
-            type="password"
-            id="passconfirm"
-            name="passconfirm"
-            required
-            class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-green-500 focus:border-green-500"
-          />
+
+        <!-- Bairro e CEP -->
+        <div class="grid-cols-2">
+          <div>
+            <label for="neighborhood" class="block text-sm font-medium text-gray-700"
+              >Bairro</label
+            >
+            <input
+              type="text"
+              id="neighborhood"
+              name="neighborhood"
+              required
+              class="input-field mt-1"
+              placeholder="Nome do bairro"
+            />
+          </div>
+          <div>
+            <label for="cep" class="block text-sm font-medium text-gray-700"
+              >CEP</label
+            >
+            <input
+              type="text"
+              id="cep"
+              name="cep"
+              required
+              class="input-field mt-1"
+              placeholder="XXXXX-XXX"
+            />
+          </div>
         </div>
-        <!-- Submit Button -->
-        <div class="py-4 register-button">
-          <button
-            type="submit"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-            style="background-color: #129063"
-          >
+
+        <!-- Cidade e Estado -->
+        <div class="grid-cols-2">
+          <div>
+            <label for="city" class="block text-sm font-medium text-gray-700"
+              >Cidade</label
+            >
+            <input
+              type="text"
+              id="city"
+              name="city"
+              required
+              class="input-field mt-1"
+              placeholder="Nome da cidade"
+            />
+          </div>
+          <div>
+            <label for="state" class="block text-sm font-medium text-gray-700"
+              >Estado</label
+            >
+            <input
+              type="text"
+              id="state"
+              name="state"
+              required
+              class="input-field mt-1"
+              placeholder="Sigla do estado"
+            />
+          </div>
+        </div>
+
+        <!-- Botão de Registro -->
+        <div class="mt-6">
+          <button type="submit" class="register-button">
             Registre-se!
           </button>
         </div>
       </form>
     </main>
 
+    <!-- Scripts -->
     <script src="../scripts/indexedDB.js"></script>
     <script src="../scripts/encriptar-senhas.js"></script>
     <script>
@@ -154,15 +307,39 @@
         .addEventListener("submit", async function (event) {
           event.preventDefault(); // Impede o envio padrão do formulário
 
-          const name = document.getElementById("name").value;
-          const phone = document.getElementById("phone").value;
-          const email = document.getElementById("email").value;
+          const name = document.getElementById("name").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const email = document.getElementById("email").value.trim();
           const password = document.getElementById("password").value;
           const passconfirm = document.getElementById("passconfirm").value;
+          const street = document.getElementById("street").value.trim();
+          const number = document.getElementById("number").value.trim();
+          const complement = document.getElementById("complement").value.trim();
+          const neighborhood = document.getElementById("neighborhood").value.trim();
+          const cep = document.getElementById("cep").value.trim();
+          const city = document.getElementById("city").value.trim();
+          const state = document.getElementById("state").value.trim();
 
           // Validação simples
-          if (!name || !phone || !email || !password || !passconfirm) {
-            alert("Por favor, preencha todos os campos.");
+          if (
+            !name ||
+            !phone ||
+            !email ||
+            !password ||
+            !passconfirm ||
+            !street ||
+            !number ||
+            !neighborhood ||
+            !cep ||
+            !city ||
+            !state
+          ) {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            return;
+          }
+
+          if (password.length < 6) {
+            alert("A senha deve ter no mínimo 6 caracteres.");
             return;
           }
 
@@ -177,7 +354,12 @@
           }
 
           if (!validatePhone(phone)) {
-            alert("Por favor, insira um telefone válido.");
+            alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+            return;
+          }
+
+          if (!validateCEP(cep)) {
+            alert("Por favor, insira um CEP válido no formato XXXXX-XXX.");
             return;
           }
 
@@ -185,7 +367,21 @@
             // Criptografar a senha
             const hashedPassword = await hashPassword(password);
             const db = await openDatabase();
-            const user = { name, phone, email, password: hashedPassword };
+            const user = {
+              name,
+              phone,
+              email,
+              password: hashedPassword,
+              address: {
+                street,
+                number,
+                complement,
+                neighborhood,
+                cep,
+                city,
+                state,
+              },
+            };
             await addUser(db, user);
             alert("Usuário registrado com sucesso!");
             window.location.href = "login.html";
@@ -194,17 +390,39 @@
           }
         });
 
-      // Adiciona a formatação do telefone
+      // Validação de Email
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Validação de Telefone
+      function validatePhone(phone) {
+        const re = /^\(\d{2}\) \d{5}-\d{4}$/;
+        return re.test(phone);
+      }
+
+      // Validação de CEP
+      function validateCEP(cep) {
+        const re = /^\d{5}-\d{3}$/;
+        return re.test(cep);
+      }
+
+      // Formatação do Telefone
       document.getElementById("phone").addEventListener("input", function (e) {
-        let x = e.target.value.replace(/\D/g, "").match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        let x = e.target.value
+          .replace(/\D/g, "")
+          .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
         e.target.value = !x[2]
           ? x[1]
           : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
       });
 
-      function validatePhone(phone) {
-        return phone.length === 14; // Considerando o formato (XX) XXXXX-XXXX
-      }
+      // Formatação do CEP
+      document.getElementById("cep").addEventListener("input", function (e) {
+        let x = e.target.value.replace(/\D/g, "").match(/(\d{0,5})(\d{0,3})/);
+        e.target.value = x[2] ? x[1] + "-" + x[2] : x[1];
+      });
     </script>
   </body>
 </html>
