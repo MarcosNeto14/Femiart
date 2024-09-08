@@ -26,9 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Adicione um listener ao evento 'click' do botão
     addToCartButton.addEventListener("click", () => {
-      // Aqui nós colocamos qualquer lógica que você deseje executar quando o botão for clicado.
-      // Neste caso, nós adicionaremos o item ao carrinho.
-
       // Primeiro, obtenha o carrinho atual do localStorage
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
