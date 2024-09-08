@@ -242,12 +242,16 @@
           try {
             // Criptografar a senha
             const hashedPassword = await hashPassword(password);
+            console.log("Hashed password login: ", hashedPassword);
+
             const db = await openDatabase();
             const authenticated = await authenticateUser(
               db,
               email,
               hashedPassword
             );
+            console.log("Hashed password provided: ", hashedPassword);
+            console.log("Stored password for user:", user.password);
 
             if (authenticated) {
               const modal = document.getElementById("successModal");

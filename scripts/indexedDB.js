@@ -98,24 +98,33 @@ function addUser(db, user) {
 }
 
 // Função para verificar se o usuário existe e as credenciais estão corretas
-function authenticateUser(db, email, hashedPassword) {
-  return new Promise((resolve, reject) => {
+function authenticateUser(db, email, plainPassword) {
+  return new Promise(async (resolve, reject) => {
     const transaction = db.transaction(["users"], "readonly");
     const userStore = transaction.objectStore("users");
-    const request = userStore.get(email);
+    const index = userStore.index("email");
+    const request = index.get(email);
+    //const request = userStore.get(email);
 
-    request.onsuccess = (event) => {
+    request.onsuccess = async (event) => {
       const user = event.target.result;
-      if (user && user.password === hashedPassword) {
-        console.log("Usuário autenticado com sucesso");
-        sessionStorage.setItem("loggedInUserEmail", email); // Salva o email do usuário logado na sessão
-        localStorage.setItem("nomeUsuario", user.name); // Salva o nome completo do usuário no localStorage
-        localStorage.setItem("loggedInUserEmail", email); // Salva o nome completo do usuário no localStorage
-        localStorage.setItem("loggedInUserPhone", user.phone); // Salva o nome completo do usuário no localStorage
-        window.location.href = "menu-produtos.html"; // Redireciona após o login
-        resolve(true);
+
+      if (user) {
+        const hashedPassword = await hashPassword(plainPassword);
+        if (user.password === hashedPassword) {
+          console.log("Usuário autenticado com sucesso");
+
+          sessionStorage.setItem("loggedInUserEmail", email); // Salva o email do usuário logado na sessão
+          localStorage.setItem("nomeUsuario", user.name); // Salva o nome completo do usuário no localStorage
+          localStorage.setItem("loggedInUserEmail", email); // Salva o nome completo do usuário no localStorage
+          localStorage.setItem("loggedInUserPhone", user.phone); // Salva o nome completo do usuário no localStorage
+          window.location.href = "menu-produto.html"; // Redireciona após o login
+
+          resolve(true);
+        } else {
+          resolve(false);
+        }
       } else {
-        console.log("Falha na autenticação");
         resolve(false);
       }
     };

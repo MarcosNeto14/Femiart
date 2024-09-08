@@ -370,6 +370,7 @@
           try {
             // Criptografar a senha
             const hashedPassword = await hashPassword(password);
+            console.log("pass register:", hashedPassword);
             const db = await openDatabase();
             // Pegar o timestamp atual como uma id (não é ideal, mas ok para este propósito)
             const user = {
