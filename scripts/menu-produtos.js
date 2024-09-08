@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      alert("Produto adicionado ao carrinho!");
     });
 
     return produtoElemento;
