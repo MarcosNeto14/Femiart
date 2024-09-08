@@ -92,7 +92,7 @@
         src="../assets/logo.png"
         alt="Logo Femiart"
         class="w-24 h-24 animate__animated animate__slideInDown"
-        style="filter: drop-shadow(2px 2px 2px #979797);"
+        style="filter: drop-shadow(2px 2px 2px #979797)"
       />
       <h1
         class="text-3xl font-bold text-black mt-4 animate__animated animate__slideInLeft"
@@ -232,7 +232,9 @@
         <!-- Bairro e CEP -->
         <div class="grid-cols-2">
           <div>
-            <label for="neighborhood" class="block text-sm font-medium text-gray-700"
+            <label
+              for="neighborhood"
+              class="block text-sm font-medium text-gray-700"
               >Bairro</label
             >
             <input
@@ -291,9 +293,7 @@
 
         <!-- Botão de Registro -->
         <div class="mt-6">
-          <button type="submit" class="register-button">
-            Registre-se!
-          </button>
+          <button type="submit" class="register-button">Registre-se!</button>
         </div>
       </form>
     </main>
@@ -315,7 +315,9 @@
           const street = document.getElementById("street").value.trim();
           const number = document.getElementById("number").value.trim();
           const complement = document.getElementById("complement").value.trim();
-          const neighborhood = document.getElementById("neighborhood").value.trim();
+          const neighborhood = document
+            .getElementById("neighborhood")
+            .value.trim();
           const cep = document.getElementById("cep").value.trim();
           const city = document.getElementById("city").value.trim();
           const state = document.getElementById("state").value.trim();
@@ -354,7 +356,9 @@
           }
 
           if (!validatePhone(phone)) {
-            alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+            alert(
+              "Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX."
+            );
             return;
           }
 
@@ -367,7 +371,9 @@
             // Criptografar a senha
             const hashedPassword = await hashPassword(password);
             const db = await openDatabase();
+            // Pegar o timestamp atual como uma id (não é ideal, mas ok para este propósito)
             const user = {
+              id: generateUUID(), // Adicionar id aqui
               name,
               phone,
               email,
