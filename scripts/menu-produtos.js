@@ -88,16 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const estrelaHtml = gerarEstrelas(produto.avaliacao);
     const produtoElemento = document.createElement("div");
     produtoElemento.className = "product-card";
-    produtoElemento.innerHTML = `
-      <a href="detalhes-produto.html"><img class="product-image" src="${produto.foto}" alt="${produto.nome}" /></a>
-      <div class="product-info">
-        <h3 class="product-name"><a href="detalhes-produto.html">${produto.nome}</a></h3>
-        <p class="product-price">${produto.preco}</p>
-        <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
-        <p class="product-seller">Vendedor: ${produto.vendedor}</p>
-        <button class="buy-button">COMPRAR</button>
-      </div>
-    `;
+    produtoElemento.innerHTML = `<a href="detalhes-produto.html?id=${produto.id}" style="text-decoration: none; color: inherit;">
+            <img class="product-image" src="${produto.foto}" alt="${produto.nome}" />
+            <div class="product-info">
+              <h3 class="product-name">${produto.nome}</h3>
+              <p class="product-price">${produto.preco}</p>
+              <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
+              <p class="product-seller">Vendedor: ${produto.vendedor}</p>
+              <button class="buy-button">COMPRAR</button>
+            </div>
+        </a>`;
 
     const buyButton = produtoElemento.querySelector(".buy-button");
     buyButton.addEventListener("click", () => {

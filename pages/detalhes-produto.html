@@ -198,14 +198,13 @@
         </ul>
     </div>
 
-    <script src="../scripts/carrinho.js"></script>
-    <script src="../scripts/indexedDB.js"></script>
+    
     <script>
         const iconPolicies = document.getElementById('icon-policies');
         const policiesWindow = document.getElementById('policies-window');
-
+        
         policiesWindow.style.display = 'none';  // Start with the window hidden
-
+        
         iconPolicies.addEventListener('click', () => {
             if (policiesWindow.style.display === 'none') {
                 policiesWindow.style.display = 'block';
@@ -213,9 +212,9 @@
                 policiesWindow.style.display = 'none';
             }
         });
-    </script>
+        </script>
     
-
+    
     <div class="container">
         <div class="product-details">
             <button class="back-button" onclick="window.location.href='menu-produtos.html'"></button>
@@ -240,5 +239,7 @@
         </div>
     </div>
     <script src="../scripts/indexedDB.js"></script>
+    <script src="../scripts/carrinho.js"></script>
+    <script type="module" src="../scripts/detalhes-produto.js"></script>
 </body>
 </html>
