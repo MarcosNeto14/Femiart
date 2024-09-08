@@ -198,7 +198,12 @@
         <!-- Continuar sem cadastro -->
         <div class="text-center">
           <p class="text-sm text-gray-600 mt-2">
-            <a href="#" id="continueWithoutAccount" class="hover:underline" style="color: #d68c45">
+            <a
+              href="#"
+              id="continueWithoutAccount"
+              class="hover:underline"
+              style="color: #d68c45"
+            >
               Continuar sem cadastro
             </a>
           </p>
@@ -215,12 +220,16 @@
       </div>
     </div>
 
+    <script src="../scripts/indexedDB.js"></script>
+    <script src="../scripts/encriptar-senhas.js"></script>
     <script>
       // Redirecionar ao clicar em "Continuar sem cadastro"
-      document.getElementById("continueWithoutAccount").addEventListener("click", function (event) {
-        event.preventDefault(); // Impede o comportamento padrão do link
-        window.location.href = "menu-produtos.html"; // Redireciona para a página desejada
-      });
+      document
+        .getElementById("continueWithoutAccount")
+        .addEventListener("click", function (event) {
+          event.preventDefault(); // Impede o comportamento padrão do link
+          window.location.href = "menu-produtos.html"; // Redireciona para a página desejada
+        });
 
       document
         .getElementById("loginForm")
