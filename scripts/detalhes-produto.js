@@ -18,36 +18,38 @@ document.addEventListener("DOMContentLoaded", () => {
       produto.avaliacao
     )} ${produto.avaliacao}/5`; // Avaliação
 
+    document.querySelector(".product-info .vendas").textContent = `Vendas: ${produto.vendas}`;
+
+    document.querySelector(".product-info .avaliacao-usuario").textContent = `Avaliação do usuário: ${produto.avaliacaoUsuario}`;
+
     document.querySelector(
       ".seller"
-    ).innerHTML = `Vendido por: <a href="seller.html?seller=${produto.vendedor}">${produto.vendedor}</a>`; // Vendedor
-    // Obtenha o botão da página HTML
+    ).innerHTML = `Vendido por: <a href="seller.html?seller=${produto.vendedor}">${produto.vendedor}</a>`;
     const addToCartButton = document.querySelector(".add-to-cart");
 
-    // Adicione um listener ao evento 'click' do botão
     addToCartButton.addEventListener("click", () => {
-      // Primeiro, obtenha o carrinho atual do localStorage
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-      // Em seguida, verifique se o item já está no carrinho
+    
       let existingItem = cart.find((item) => item.id === produto.id);
-
+    
+      const precoConvertido = parseFloat(produto.preco.replace("R$", "").replace(".", "").replace(",", "."));
+    
       if (existingItem) {
-        // Se o item já existe, apenas incremente a quantidade
         existingItem.quantity++;
       } else {
-        // Se não existe, adicione um novo item ao carrinho
         cart.push({
           id: produto.id,
           name: produto.nome,
-          price: parseFloat(produto.preco.replace(/[^0-9.-]+/g, "")),
+          price: precoConvertido,  // Preço correto
           quantity: 1,
           image: produto.foto,
         });
       }
-
-      // Finalmente, salve o carrinho atualizado de volta ao localStorage
+    
       localStorage.setItem("cart", JSON.stringify(cart));
+      
+      // Mostrar notificação de adição ao carrinho
+      showAddToCartNotification();
     });
   }
 });
@@ -68,3 +70,24 @@ function gerarEstrelhas(avaliacao) {
 
   return htmlEstrels;
 }
+
+function showAddToCartNotification() {
+  const notification = document.createElement("div");
+  notification.id = "cart-notification";
+  notification.innerText = "Produto adicionado à sacola!";
+  document.body.appendChild(notification);
+
+  // Exibir a notificação
+  setTimeout(() => {
+    notification.classList.add("show");
+  }, 100);  // Delay para garantir a animação
+
+  // Remover a notificação após 2 segundos
+  setTimeout(() => {
+    notification.classList.remove("show");
+    setTimeout(() => {
+      notification.remove();  // Remover do DOM
+    }, 500);  // Delay para a transição de ocultar
+  }, 2000);
+}
+

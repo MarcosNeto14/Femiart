@@ -88,41 +88,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const estrelaHtml = gerarEstrelas(produto.avaliacao);
     const produtoElemento = document.createElement("div");
     produtoElemento.className = "product-card";
-    produtoElemento.innerHTML = `<a href="detalhes-produto.html?id=${produto.id}" style="text-decoration: none; color: inherit;">
-            <img class="product-image" src="${produto.foto}" alt="${produto.nome}" />
-            <div class="product-info">
-              <h3 class="product-name">${produto.nome}</h3>
-              <p class="product-price">${produto.preco}</p>
-              <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
-              <p class="product-seller">Vendedor: ${produto.vendedor}</p>
-              <button class="buy-button">COMPRAR</button>
-            </div>
-        </a>`;
-
+    
+    produtoElemento.innerHTML = `
+      <a href="detalhes-produto.html?id=${produto.id}" style="text-decoration: none; color: inherit;">
+        <img class="product-image" src="${produto.foto}" alt="${produto.nome}" />
+        <div class="product-info">
+          <h3 class="product-name">${produto.nome}</h3>
+          <p class="product-price">${produto.preco}</p>
+          <p class="product-rating">Avaliação: ${estrelaHtml} ${produto.avaliacao}</p>
+          <p class="product-seller">Vendedor: ${produto.vendedor}</p>
+          <button class="buy-button">COMPRAR</button>
+        </div>
+      </a>`;
+  
     const buyButton = produtoElemento.querySelector(".buy-button");
-    buyButton.addEventListener("click", () => {
+    buyButton.addEventListener("click", (event) => {
+      event.preventDefault(); // Impedir o comportamento padrão do link
+  
+      // Adicionar o produto ao carrinho
       const product = {
         id: produto.id,
         name: produto.nome,
-        price: parseFloat(
-          produto.preco.replace("R$", "").replace(".", "").replace(",", ".")
-        ),
+        price: parseFloat(produto.preco.replace("R$", "").replace(".", "").replace(",", ".")),
         quantity: 1,
         image: produto.foto,
       };
-
+  
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const existingProduct = cart.find((item) => item.id === product.id);
-
+  
       if (existingProduct) {
         existingProduct.quantity++;
       } else {
         cart.push(product);
       }
-
+  
       localStorage.setItem("cart", JSON.stringify(cart));
+  
+      // Exibir notificação de produto adicionado ao carrinho
+      showAddToCartNotification();
+  
+      // Redirecionar para a página de detalhes do produto após um pequeno atraso
+      setTimeout(() => {
+        window.location.href = `detalhes-produto.html?id=${produto.id}`;
+      }, 1000); // 1 segundo para permitir que a notificação seja vista antes do redirecionamento
     });
-
+  
     return produtoElemento;
   }
 
@@ -144,6 +155,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   categorias[0].classList.add("active");
   aplicarFiltros();
-});
+  });
+  function showAddToCartNotification() {
+    const notification = document.createElement("div");
+    notification.id = "cart-notification";
+    notification.innerText = "Produto adicionado à sacola!";
+    document.body.appendChild(notification);
+
+    // Exibir a notificação com um efeito
+    setTimeout(() => {
+      notification.classList.add("show");
+    }, 100); // Delay para a animação aparecer
+
+    // Remover a notificação após 2 segundos
+    setTimeout(() => {
+      notification.classList.remove("show");
+      setTimeout(() => {
+        notification.remove(); // Remover do DOM
+      }, 500); // Delay para a transição de ocultar
+    }, 2000);
+  }
+
 
 document.addEventListener("DOMContentLoaded", displayUserName);

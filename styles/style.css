@@ -641,6 +641,27 @@ body {
   transition: height 0.3s;
 }
 
+#cart-notification {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #129063;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#cart-notification.show {
+  display: block;
+  opacity: 1;
+}
+
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Estilos para os novos produtos */
