@@ -254,6 +254,7 @@ body {
   color: #555;
 }
 
+
 .items-grid {
   display: flex;
   flex-wrap: wrap;
@@ -660,6 +661,59 @@ body {
 #cart-notification.show {
   display: block;
   opacity: 1;
+}
+
+.icons-container {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os ícones */
+  margin-top: 10px;
+}
+
+.icon {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icon-info {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 200px;
+  max-height: 150px;
+  overflow-y: auto;
+  top: 50px; /* Position below the icon */
+}
+
+.icon-info.show {
+  display: block;
+}
+
+.popup-window {
+  display: none;
+  position: absolute;
+  top: 290px; /* Ajuste para posicionar a janela corretamente */
+  left: 75%; /* Centraliza na horizontal */
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 200px; /* Reduz a largura */
+  max-height: 200px; /* Reduz a altura */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow-y: auto; /* Para rolagem caso haja muito conteúdo */
+}
+
+.popup-window img {
+  width: 100%; /* Garante que a imagem preencha a largura da janela */
+  height: auto;
+  border-radius: 5px; /* Opcional, para arredondar os cantos */
 }
 
 

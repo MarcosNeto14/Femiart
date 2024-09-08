@@ -24,7 +24,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector(
       ".seller"
-    ).innerHTML = `Vendido por: <a href="seller.html?seller=${produto.vendedor}">${produto.vendedor}</a>`;
+    ).innerHTML = `Vendido por: <a href="vendedora-page.html?seller=${produto.vendedor}">${produto.vendedor}</a>`;
+
+    const incomeIcon = document.getElementById("income-icon");
+    const coopIcon = document.getElementById("coop-icon");
+    const sustainabilityIcon = document.getElementById("sustainability-icon");
+
+    if (produto.renda) {
+      incomeIcon.style.display = "block";
+      incomeIcon.src = `../assets/${produto.renda}`;
+    }
+
+    if (produto.cooperativa) {
+      coopIcon.style.display = "block";
+      coopIcon.src = `../assets/${produto.cooperativa}`;
+    }
+
+    if (produto.sustentabilidade) {
+      sustainabilityIcon.style.display = "block";
+      sustainabilityIcon.src = `../assets/${produto.sustentabilidade}`;
+    }
+
+    // Função para abrir/fechar janelas
+    function toggleWindow(icon, window) {
+      icon.addEventListener("click", () => {
+        if (window.style.display === "none") {
+          window.style.display = "block";
+        } else {
+          window.style.display = "none";
+        }
+      });
+    }
+
+    // Atribuir comportamento aos ícones
+    toggleWindow(incomeIcon, document.getElementById("income-window"));
+    toggleWindow(coopIcon, document.getElementById("coop-window"));
+    toggleWindow(sustainabilityIcon, document.getElementById("sustainability-window"));
+
     const addToCartButton = document.querySelector(".add-to-cart");
 
     addToCartButton.addEventListener("click", () => {
@@ -51,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Mostrar notificação de adição ao carrinho
       showAddToCartNotification();
     });
+    
   }
 });
 
