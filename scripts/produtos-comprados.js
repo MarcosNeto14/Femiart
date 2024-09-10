@@ -52,29 +52,71 @@ function loadPurchasedItems() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  loadPurchasedItems();
-  const chatButtons = document.querySelectorAll(".chat-icon-container");
   const chatContainer = document.getElementById("chat-container");
-  const minimizeButton = document.getElementById("minimize-chat");
-  const closeButton = document.getElementById("close-chat");
-  const chatInput = document.getElementById("chat-input");
-  const sendButton = document.getElementById("send-chat");
-  const chatHistory = document.getElementById("chat-history");
   const chatHeader = document.getElementById("chat-header");
+  const minimizeChatBtn = document.getElementById("minimize-chat");
+  const closeChatBtn = document.getElementById("close-chat");
+  const sendChatBtn = document.getElementById("send-chat");
+  const chatInput = document.getElementById("chat-input");
+  const chatHistory = document.getElementById("chat-history");
 
-  const purchasedItemIds =
-    JSON.parse(localStorage.getItem("purchasedItemIds")) || [];
-
-  // Abrir o chat ao clicar em "Falar com a vendedora"
-  chatButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      chatContainer.classList.remove("chat-hidden");
-      chatContainer.classList.add("chat-maximized");
-    });
+  // Mostrar o chat ao clicar no ícone de perfil
+  document.querySelector("#icon-perfil").addEventListener("click", () => {
+    chatContainer.classList.toggle("chat-visible");
   });
 
-  // Minimizar o chat
-  minimizeButton.addEventListener("click", () => {
+  // Minimizar e maximizar o chat ao clicar na barra do cabeçalho
+  chatHeader.addEventListener("click", () => {
+    toggleChatMinimize();
+  });
+
+  // Minimizar e maximizar o chat ao clicar no botão de minimizar
+  minimizeChatBtn.addEventListener("click", (event) => {
+    event.stopPropagation(); // Impede a propagação para o cabeçalho
+    toggleChatMinimize();
+  });
+
+  // Fechar o chat ao clicar no botão de fechar
+  closeChatBtn.addEventListener("click", (event) => {
+    event.stopPropagation(); // Impede a propagação para o cabeçalho
+    chatContainer.classList.remove("chat-visible");
+  });
+
+  // Enviar mensagem ao clicar no botão "Enviar"
+  sendChatBtn.addEventListener("click", sendMessage);
+
+  // Enviar mensagem ao pressionar a tecla "Enter"
+  chatInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Evita a quebra de linha
+      sendMessage();
+    }
+  });
+
+  // Função para enviar a mensagem e receber a resposta automática
+  function sendMessage() {
+    const userMessage = chatInput.value.trim();
+    if (userMessage !== "") {
+      appendMessage("Você", userMessage);
+      chatInput.value = "";
+
+      // Resposta automática da vendedora após 1 segundo
+      setTimeout(() => {
+        appendMessage("Vendedora", "Obrigada pelo seu contato! Em que posso ajudar?");
+      }, 1000);
+    }
+  }
+
+  // Função para adicionar a mensagem no histórico
+  function appendMessage(sender, message) {
+    const messageElement = document.createElement("div");
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatHistory.appendChild(messageElement);
+    chatHistory.scrollTop = chatHistory.scrollHeight; // Rolar para o fim do chat
+  }
+
+  // Alternar entre minimizar e maximizar o chat
+  function toggleChatMinimize() {
     if (chatContainer.classList.contains("chat-maximized")) {
       chatContainer.classList.remove("chat-maximized");
       chatContainer.classList.add("chat-minimized");
@@ -82,49 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       chatContainer.classList.remove("chat-minimized");
       chatContainer.classList.add("chat-maximized");
     }
-  });
-
-  // Fechar o chat
-  closeButton.addEventListener("click", (event) => {
-    event.stopPropagation();
-    chatContainer.classList.add("chat-hidden");
-    chatContainer.classList.remove("chat-maximized", "chat-minimized");
-  });
-
-  // Enviar mensagem e simular resposta da vendedora
-  function sendMessage() {
-    const message = chatInput.value.trim();
-    if (message) {
-      const messageElement = document.createElement("div");
-      messageElement.textContent = `Você: ${message}`;
-      chatHistory.appendChild(messageElement);
-      chatInput.value = "";
-
-      // Simular resposta da vendedora/IA
-      setTimeout(() => {
-        const responseElement = document.createElement("div");
-        responseElement.textContent =
-          "Vendedora: Olá, tudo bem? Qual seria sua dúvida? E qual o produto em questão?";
-        chatHistory.appendChild(responseElement);
-        chatHistory.scrollTop = chatHistory.scrollHeight;
-      }, 1000);
-    }
   }
-
-  sendButton.addEventListener("click", sendMessage);
-
-  // Enviar mensagem ao pressionar "Enter"
-  chatInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      sendMessage();
-    }
-  });
-
-  // Também permitir que o cabeçalho do chat alterne entre minimizar/maximizar
-  chatHeader.addEventListener("click", () => {
-    minimizeButton.click();
-  });
 
   // Função para filtrar produtos comprados
   function getPurchasedItemsByIds(itemIds) {
@@ -138,4 +138,5 @@ document.addEventListener("DOMContentLoaded", function () {
   localStorage.removeItem("purchasedItemIds");
 });
 
+loadPurchasedItems();
 updatePurchases();

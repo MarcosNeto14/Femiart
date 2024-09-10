@@ -631,6 +631,10 @@ body {
   display: none;
 }
 
+.chat-visible {
+  display: block;
+}
+
 .chat-minimized {
   height: 30px;
   overflow: hidden;
