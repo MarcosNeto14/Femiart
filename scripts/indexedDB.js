@@ -41,19 +41,23 @@ function openDatabase() {
 }
 
 // Função para registrar uma nova compra
-function addOrder(db, order) {
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(["orders"], "readwrite");
-    const orderStore = transaction.objectStore("orders");
-    const request = orderStore.add(order);
+async function addUser(db, user) {
+  return new Promise(async (resolve, reject) => {
+    const transaction = db.transaction(["users"], "readwrite");
+    const userStore = transaction.objectStore("users");
+
+    // Gera o hash da senha antes de salvar o usuário
+    user.password = await hashPassword(user.password);
+
+    const request = userStore.add(user);
 
     request.onsuccess = () => {
-      console.log("Compra registrada com sucesso");
+      console.log("Usuário adicionado com sucesso");
       resolve();
     };
 
     request.onerror = (event) => {
-      console.error("Erro ao registrar a compra:", event);
+      console.error("Erro ao adicionar o usuário:", event);
       reject(event);
     };
   });
@@ -99,32 +103,35 @@ function addUser(db, user) {
 
 // Função para verificar se o usuário existe e as credenciais estão corretas
 function authenticateUser(db, email, plainPassword) {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const transaction = db.transaction(["users"], "readonly");
     const userStore = transaction.objectStore("users");
     const index = userStore.index("email");
     const request = index.get(email);
-    //const request = userStore.get(email);
 
     request.onsuccess = async (event) => {
       const user = event.target.result;
 
       if (user) {
+        // Comparar a senha fornecida com o hash armazenado
         const hashedPassword = await hashPassword(plainPassword);
         if (user.password === hashedPassword) {
           console.log("Usuário autenticado com sucesso");
 
-          sessionStorage.setItem("loggedInUserEmail", email); // Salva o email do usuário logado na sessão
-          localStorage.setItem("nomeUsuario", user.name); // Salva o nome completo do usuário no localStorage
-          localStorage.setItem("loggedInUserEmail", email); // Salva o nome completo do usuário no localStorage
-          localStorage.setItem("loggedInUserPhone", user.phone); // Salva o nome completo do usuário no localStorage
+          // Salvar dados no sessionStorage e localStorage
+          sessionStorage.setItem("loggedInUserEmail", email);
+          localStorage.setItem("nomeUsuario", user.name);
+          localStorage.setItem("loggedInUserEmail", email);
+          localStorage.setItem("loggedInUserPhone", user.phone);
           window.location.href = "menu-produto.html"; // Redireciona após o login
 
           resolve(true);
         } else {
+          console.error("Senha incorreta");
           resolve(false);
         }
       } else {
+        console.error("Usuário não encontrado");
         resolve(false);
       }
     };
